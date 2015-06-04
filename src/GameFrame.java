@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
@@ -9,6 +10,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+
 
 
 public class GameFrame extends JFrame {
@@ -34,6 +37,7 @@ public class GameFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+
 	public GameFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -41,27 +45,46 @@ public class GameFrame extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		MovingCIObject.board=this;
 		Spaceship spaceship=new Spaceship();
 		contentPane.add(spaceship);
-		Icon icon=new ImageIcon(this.getClass().getResource("/Chicken_Invaders_resources/spaceship.PNG"));
-		int width=icon.getIconWidth(),height=icon.getIconHeight();
-		icon=null;
-		contentPane.addMouseMotionListener(new MouseMotionListener() {
-			
+
+	
+		addKeyListener(new KeyListener() {
+
 			@Override
-			public void mouseMoved(MouseEvent e) {
-				System.out.println(spaceship.getHeight());
-				spaceship.setSize(width, height);
-				spaceship.setLocation(e.getPoint());
-				System.out.println(spaceship.getHeight());
-			}
-			
+			public void keyTyped(KeyEvent e) {}
+
 			@Override
-			public void mouseDragged(MouseEvent e) {
-				// TODO Auto-generated method stub
+			public void keyReleased(KeyEvent e) {
+
+				Shot s=null;
 				
+				switch (e.getKeyCode()) {
+				case KeyEvent.VK_1:
+				case KeyEvent.VK_NUMPAD1:
+					s=new Shot(Shot.shotColor.black);
+					break;
+				case KeyEvent.VK_2:
+				case KeyEvent.VK_NUMPAD2:
+					s=new Shot(Shot.shotColor.red);
+					break;case KeyEvent.VK_3:
+					case KeyEvent.VK_NUMPAD3:
+						s=new Shot(Shot.shotColor.blue);
+						break;case KeyEvent.VK_4:
+						case KeyEvent.VK_NUMPAD4:
+							s=new Shot(Shot.shotColor.yellow);
+							break;
+				default:
+					return;
+				}
+				contentPane.add(s);
+				s.setLocation(spaceship.getX()+spaceship.getWidth()/2-10,spaceship.getY());
 			}
-		});;
+
+			@Override
+			public void keyPressed(KeyEvent e) {}
+		});
 	}
 
 }

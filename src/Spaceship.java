@@ -1,5 +1,6 @@
 import java.awt.Component;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -15,7 +16,20 @@ public class Spaceship extends MovingCIObject {
 
 	public Spaceship() {
 		super(IMAGE_PATH);
-		System.out.println(new ImageIcon(IMAGE_PATH).getIconHeight());
+		board.getContentPane().addMouseMotionListener(new MouseMotionListener() {
+
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				setLocation(e.getPoint());
+				setSize(67, 69);
+			}
+
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+		});;
 	}
 
 	@Override
@@ -23,5 +37,10 @@ public class Spaceship extends MovingCIObject {
 		// TODO Auto-generated method stub
 
 	}
-
+@Override
+public void actionPerformed(ActionEvent e) {
+	// TODO Auto-generated method stub
+	super.actionPerformed(e);
+	
+}
 }
