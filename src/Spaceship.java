@@ -16,6 +16,7 @@ public class Spaceship extends MovingCIObject {
 
 	public Spaceship() {
 		super(IMAGE_PATH);
+		type="Spaceship";
 		board.getContentPane().addMouseMotionListener(new MouseMotionListener() {
 
 			@Override
@@ -33,8 +34,10 @@ public class Spaceship extends MovingCIObject {
 	}
 
 	@Override
-	protected void bomb(MovingCIObject bomber) {
-		// TODO Auto-generated method stub
+	protected boolean bomb(MovingCIObject bomber) {
+		if("Chicken".equals(bomber.type))
+			;//Explode
+		return false;
 
 	}
 @Override

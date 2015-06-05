@@ -15,20 +15,24 @@ public class Shot extends MovingCIObject{
 	public Shot(shotColor c) {
 		super("/Chicken_Invaders_resources/"+c+".png");
 		this.c=c;
+		type="Shot";
 	}
 	
 
 	@Override
-	protected void bomb(MovingCIObject bomber) {
-		// TODO Auto-generated method stub
-		//setVisible(false);
+	protected boolean bomb(MovingCIObject bomber) {
+		if("Chicken".equals(bomber.type)){
+			return true;
+		}
+		return false;
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		super.actionPerformed(e);
 		setLocation(getX(),getY()-4);
 		if(getY()<=0)
 			delete();
+		else
+			super.actionPerformed(e);
 	}
 
 	public shotColor getColor() {

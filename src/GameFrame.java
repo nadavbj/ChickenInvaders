@@ -2,14 +2,11 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 
 
 
@@ -48,8 +45,10 @@ public class GameFrame extends JFrame {
 		MovingCIObject.board=this;
 		Spaceship spaceship=new Spaceship();
 		contentPane.add(spaceship);
-
-	
+		Chicken chicken=new Chicken(2, 2, Chicken.chickenColor.red);
+	contentPane.add(chicken);
+	chicken.setLocation(200,200);
+	chicken.setSize(112, 88);
 		addKeyListener(new KeyListener() {
 
 			@Override
