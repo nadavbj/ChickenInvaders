@@ -22,7 +22,7 @@ public  class Chicken extends MovingCIObject {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		setSize(112, 88);
-		if(Math.random()<0.001)
+		if(Math.random()<0.01)
 		{
 			Egg egg=new Egg(Chicken.this.getLocation());
 			board.getContentPane().add(egg);

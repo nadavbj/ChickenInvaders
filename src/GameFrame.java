@@ -46,9 +46,9 @@ public class GameFrame extends JFrame {
 		Spaceship spaceship=new Spaceship();
 		contentPane.add(spaceship);
 		Chicken chicken=new Chicken(2, 2, Chicken.chickenColor.red);
-	contentPane.add(chicken);
-	chicken.setLocation(200,200);
-	chicken.setSize(112, 88);
+		contentPane.add(chicken);
+		chicken.setLocation(200,200);
+		chicken.setSize(112, 88);
 		addKeyListener(new KeyListener() {
 
 			@Override
@@ -58,7 +58,7 @@ public class GameFrame extends JFrame {
 			public void keyReleased(KeyEvent e) {
 
 				Shot s=null;
-				
+
 				switch (e.getKeyCode()) {
 				case KeyEvent.VK_1:
 				case KeyEvent.VK_NUMPAD1:
@@ -74,8 +74,8 @@ public class GameFrame extends JFrame {
 						case KeyEvent.VK_NUMPAD4:
 							s=new Shot(Shot.shotColor.yellow);
 							break;
-				default:
-					return;
+						default:
+							return;
 				}
 				contentPane.add(s);
 				s.setLocation(spaceship.getX()+spaceship.getWidth()/2-10,spaceship.getY());

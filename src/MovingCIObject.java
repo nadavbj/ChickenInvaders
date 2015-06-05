@@ -56,7 +56,6 @@ public abstract class MovingCIObject extends JLabel implements ActionListener {
 		}
 		for (MovingCIObject movingCIObjectToDelete : objectsToDelete) {
 			movingCIObjectToDelete.delete();
-			board.repaint();
 		}
 	}
 
@@ -65,6 +64,7 @@ public abstract class MovingCIObject extends JLabel implements ActionListener {
 		board.getContentPane().remove(this);
 		aliveMovingObjects.remove(this);
 		timer.removeActionListener(this);
+		board.repaint();
 	}
 
 

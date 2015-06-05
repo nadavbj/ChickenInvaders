@@ -16,13 +16,16 @@ public class Egg extends MovingCIObject {
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Egg.this.setLocation(getX(), getY()+2);
+		if(exploed>0)
+			exploed++;
+		if(exploed>10)
+		 delete();
+		if(exploed==0)
+			Egg.this.setLocation(getX(), getY()+2);
 	}
-	boolean exploed=false;
+	int exploed=0;
 	@Override
 	protected boolean bomb(MovingCIObject bomber) {
-		if(exploed)
-			return true;
 		if(bomber instanceof Spaceship)
 		{
 			try{
@@ -30,9 +33,9 @@ public class Egg extends MovingCIObject {
 			}
 			catch(Exception e)
 			{
-				
+				System.out.println("fail");
 			}
-			exploed=true;
+			exploed=1;
 		}
 		return false;
 	}
