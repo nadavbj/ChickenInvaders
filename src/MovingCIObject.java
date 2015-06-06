@@ -1,8 +1,10 @@
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Set;
 import java.util.Vector;
 import java.util.WeakHashMap;
 
@@ -12,12 +14,13 @@ import javax.swing.JLabel;
 import javax.swing.Timer;
 
 
-public abstract class MovingCIObject extends JLabel implements ActionListener {
+public abstract class MovingCIObject extends JLabel implements ActionListener{
 
 	protected static Collection<MovingCIObject> aliveMovingObjects=null;
 	public static GameFrame board;
 	protected static WeakHashMap<String, Icon> picsCache;
 	public static Timer timer;
+	protected String type;
 
 	public MovingCIObject(String iconPath) {
 		this(getIcon(iconPath).getIconWidth(),getIcon(iconPath).getIconHeight());
@@ -31,26 +34,28 @@ public abstract class MovingCIObject extends JLabel implements ActionListener {
 			timer=new Timer(50, this);
 			timer.start();
 		}
-
-		//board.getContentPane().add(this);
 		setSize(width,height);
 		aliveMovingObjects.add(this);
 		timer.addActionListener(this);
 	}
 
-	protected void bomb(MovingCIObject bomber){
-		aliveMovingObjects.remove(this);
-	}
+	protected abstract boolean bomb(MovingCIObject bomber);
 
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		Set<MovingCIObject>objectsToDelete=new HashSet<MovingCIObject>();
 		for (MovingCIObject movingCIObject : aliveMovingObjects) {
-			if(getBounds().intersects(movingCIObject.getBounds())&& movingCIObject!=this)
+			if(getBounds().intersects(movingCIObject.getBounds()) && movingCIObject!=this)
 			{
-				bomb(movingCIObject);
-				movingCIObject.bomb(this);
+				if(bomb(movingCIObject))
+					objectsToDelete.add(this);
+				if(movingCIObject.bomb(this))
+					objectsToDelete.add(movingCIObject);
 			}
+		}
+		for (MovingCIObject movingCIObjectToDelete : objectsToDelete) {
+			movingCIObjectToDelete.delete();
 		}
 	}
 
@@ -59,6 +64,7 @@ public abstract class MovingCIObject extends JLabel implements ActionListener {
 		board.getContentPane().remove(this);
 		aliveMovingObjects.remove(this);
 		timer.removeActionListener(this);
+		board.repaint();
 	}
 
 
@@ -73,6 +79,6 @@ public abstract class MovingCIObject extends JLabel implements ActionListener {
 		}
 		return icon;
 	}
-
+	
 
 }

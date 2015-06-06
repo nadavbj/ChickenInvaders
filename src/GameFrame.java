@@ -1,12 +1,10 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.GraphicsEnvironment;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -14,10 +12,11 @@ import javax.swing.border.EmptyBorder;
 
 
 
+
 public class GameFrame extends JFrame {
 
 	private JPanel contentPane;
-
+	private Shot.shotColor color=Shot.shotColor.black;
 	/**
 	 * Launch the application.
 	 */
@@ -27,6 +26,7 @@ public class GameFrame extends JFrame {
 				try {
 					GameFrame frame = new GameFrame();
 					frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -40,16 +40,20 @@ public class GameFrame extends JFrame {
 
 	public GameFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		//setBounds(100, 100, 450, 300);
+		Rectangle maxBounds = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();		 
+		setSize(maxBounds.width, maxBounds.height);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		MovingCIObject.board=this;
-		Spaceship spaceship=new Spaceship();
+		final Spaceship spaceship=new Spaceship();
 		contentPane.add(spaceship);
-
-	
+		Chicken chicken=new Chicken(2, 2, Chicken.chickenColor.red);
+		contentPane.add(chicken);
+		chicken.setLocation(200,200);
+		chicken.setSize(112, 88);
 		addKeyListener(new KeyListener() {
 
 			@Override
@@ -59,27 +63,30 @@ public class GameFrame extends JFrame {
 			public void keyReleased(KeyEvent e) {
 
 				Shot s=null;
-				
+
 				switch (e.getKeyCode()) {
 				case KeyEvent.VK_1:
 				case KeyEvent.VK_NUMPAD1:
-					s=new Shot(Shot.shotColor.black);
+					color=Shot.shotColor.black;
 					break;
 				case KeyEvent.VK_2:
 				case KeyEvent.VK_NUMPAD2:
-					s=new Shot(Shot.shotColor.red);
+					color=Shot.shotColor.red;
 					break;case KeyEvent.VK_3:
 					case KeyEvent.VK_NUMPAD3:
-						s=new Shot(Shot.shotColor.blue);
+						color=Shot.shotColor.blue;
 						break;case KeyEvent.VK_4:
 						case KeyEvent.VK_NUMPAD4:
-							s=new Shot(Shot.shotColor.yellow);
+							color=Shot.shotColor.yellow;			
+						case KeyEvent.VK_SPACE:
+							s=new Shot(color);
+							contentPane.add(s);
+							s.setLocation(spaceship.getX()+spaceship.getWidth()/2-10,spaceship.getY());
 							break;
-				default:
-					return;
+
+							default:
+							return;
 				}
-				contentPane.add(s);
-				s.setLocation(spaceship.getX()+spaceship.getWidth()/2-10,spaceship.getY());
 			}
 
 			@Override
