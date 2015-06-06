@@ -7,7 +7,7 @@ import javax.swing.Icon;
 public  class Chicken extends MovingCIObject {
 	protected int raw,col;
 	protected static Chicken[][]chickensMat=null;
-	enum chickenColor{red};
+	enum chickenColor{red, };
 	chickenColor color;
 	public Chicken(int col, int raw,chickenColor c) {
 		super("/Chicken_Invaders_resources/chicken/chicken_"+c+".PNG");
