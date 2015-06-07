@@ -17,6 +17,7 @@ public class GameFrame extends JFrame {
 
 	private JPanel contentPane;
 	private Shot.shotColor color=Shot.shotColor.black;
+	private Chicken c;
 	/**
 	 * Launch the application.
 	 */
@@ -27,6 +28,7 @@ public class GameFrame extends JFrame {
 	 */
 
 	public GameFrame() {
+		Chicken[][]chickensMat= c.firstLevel();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//setBounds(100, 100, 450, 300);
 		Rectangle maxBounds = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();		 
@@ -40,6 +42,7 @@ public class GameFrame extends JFrame {
 		contentPane.add(spaceship);
 		Chicken chicken=new Chicken(2, 2, Chicken.chickenColor.red);
 		contentPane.add(chicken);
+		contentPane.add(chickensMat);
 		chicken.setLocation(200,200);
 		chicken.setSize(112, 88);
 		addKeyListener(new KeyListener() {
