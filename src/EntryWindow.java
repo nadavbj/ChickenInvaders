@@ -1,5 +1,8 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -7,13 +10,15 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 
-public class EntryW extends JFrame {
+public class EntryWindow extends JFrame {
 	private GameFrame gf;
 	private JPanel contentPane;
+	private static JPanel imagePanel;
 
 	/**
 	 * Launch the application.
@@ -22,7 +27,7 @@ public class EntryW extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					EntryW frame = new EntryW();
+					EntryWindow frame = new EntryWindow();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -34,7 +39,7 @@ public class EntryW extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public EntryW() {
+	public EntryWindow() {
 		gf = new GameFrame();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 600);
@@ -63,14 +68,16 @@ public class EntryW extends JFrame {
 		contentPane.add(btnStart);
 		
 		JLabel lblTitle = new JLabel("");
-		lblTitle.setIcon(new ImageIcon(EntryW.class.getResource("/Chicken_Invaders_resources/new3937.jpg")));
+		lblTitle.setIcon(new ImageIcon(EntryWindow.class.getResource("/Chicken_Invaders_resources/new3937.jpg")));
 		
 		lblTitle.setBounds(126, 0, 600, 247);
 		contentPane.add(lblTitle);
 		
 		JLabel backGround = new JLabel("");
-		backGround.setIcon(new ImageIcon(EntryW.class.getResource("/Chicken_Invaders_resources/backGround.jpeg")));
+		backGround.setIcon(new ImageIcon(EntryWindow.class.getResource("/Chicken_Invaders_resources/backGround.jpeg")));
 		backGround.setBounds(6, -12, 600, 600);
 		contentPane.add(backGround);
 	}
+	
+	
 }

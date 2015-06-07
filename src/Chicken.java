@@ -9,10 +9,11 @@ public  class Chicken extends MovingCIObject {
 	private static Chicken[][]chickensMat=null;
 	enum chickenColor{red, blue, green, orange, purple, yellow, circle, plus, x};
 	chickenColor color;
+	private static int direction=3;
 	public Chicken(int col, int raw,chickenColor c) {
 		super("/Chicken_Invaders_resources/chicken/chicken_"+c+".PNG");
 		if(getChickensMat()==null)
-			setChickensMat(new Chicken[8][4]);
+			chickensMat=new Chicken[8][4];
 		getChickensMat()[col][raw]=this;
 		this.raw=raw;
 		this.col=col;
@@ -27,38 +28,33 @@ public  class Chicken extends MovingCIObject {
 			Egg egg=new Egg(Chicken.this.getLocation());
 			board.getContentPane().add(egg);
 		}
+		
+		//long xtime  
+		//xtime++;
+		//setLocation(getX(),baseY+10*Math.sin(xtime));
+		setLocation(getX()+direction, getY());
+		if(getX()==10||getX()==board.getWidth()-getWidth()-10)
+			direction=-direction;
 	}
 	
-	public void setChicken(chickenColor c){
-		this.color=c;
-	}
-	
-	@Override
-	protected boolean bomb(MovingCIObject bomber) {
-		if("Shot".equals(bomber.type)){
-			return true;
-		}	
-		return false;
-	}
 	
 	public static Chicken[][] getChickensMat() {
 		return chickensMat;
 	}
-	public static void setChickensMat(Chicken[][] chickensMat) {
-		Chicken.chickensMat = chickensMat;
-	}
 	
-	public Chicken[][] firstLevel( ){
-		Chicken chickenR=new Chicken(2, 2, Chicken.chickenColor.red);
-		for (int i=1;i<=8;i++){
-			for (int j=1; j<=4;j++){
-				this.chickensMat[i][j] = chickenR;
-				
-				
+	static chickenColor [][][]levels={
+			{{chickenColor.red,chickenColor.blue},
+				{},
 				
 			}
-		}
-		return chickensMat;
+			
+			
+			
+	};
+	
+	public static void load_level(int level){
+		chickenColor [][]levelMat=levels[level-1];
+		
 	}
 	
 }

@@ -8,7 +8,7 @@ import javax.management.RuntimeErrorException;
 import javax.swing.Icon;
 
 
-public class Shot extends MovingCIObject implements Visitor {
+public class Shot extends Active {
 
 	public enum shotColor{red,blue,yellow,black};
 	private shotColor c;
@@ -51,11 +51,8 @@ public class Shot extends MovingCIObject implements Visitor {
 		
 	}
 
-	@Override
-	protected boolean bomb(MovingCIObject bomber) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+
+	
 
 
 

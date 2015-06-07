@@ -26,7 +26,7 @@ public abstract class MovingCIObject extends JLabel implements ActionListener{
 		this(getIcon(iconPath).getIconWidth(),getIcon(iconPath).getIconHeight());
 		setIcon(getIcon(iconPath));
 	}
-	public MovingCIObject(int width, int height) {
+	private MovingCIObject(int width, int height) {
 		setText(null);
 		if(aliveMovingObjects==null)
 		{
@@ -39,25 +39,10 @@ public abstract class MovingCIObject extends JLabel implements ActionListener{
 		timer.addActionListener(this);
 	}
 
-	protected abstract boolean bomb(MovingCIObject bomber);
+	//protected abstract boolean bomb(MovingCIObject bomber);
 
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		Set<MovingCIObject>objectsToDelete=new HashSet<MovingCIObject>();
-		for (MovingCIObject movingCIObject : aliveMovingObjects) {
-			if(getBounds().intersects(movingCIObject.getBounds()) && movingCIObject!=this)
-			{
-				if(bomb(movingCIObject))
-					objectsToDelete.add(this);
-				if(movingCIObject.bomb(this))
-					objectsToDelete.add(movingCIObject);
-			}
-		}
-		for (MovingCIObject movingCIObjectToDelete : objectsToDelete) {
-			movingCIObjectToDelete.delete();
-		}
-	}
+	
 
 
 	public void delete() {

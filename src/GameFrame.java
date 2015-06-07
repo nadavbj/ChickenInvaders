@@ -5,34 +5,30 @@ import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-
-
-
 
 public class GameFrame extends JFrame {
 
 	private JPanel contentPane;
 	private Shot.shotColor color=Shot.shotColor.black;
 	private Chicken c;
-	/**
-	 * Launch the application.
-	 */
-	
-
-	/**
-	 * Create the frame.
-	 */
+	private JLabel backGround;
 
 	public GameFrame() {
-		Chicken[][]chickensMat= c.firstLevel();
+		
+		//Chicken[][]chickensMat= c.firstLevel();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//setBounds(100, 100, 450, 300);
 		Rectangle maxBounds = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();		 
 		setSize(maxBounds.width, maxBounds.height);
+		//backGround = new JLabel("");
+		//backGround.setIcon(new ImageIcon(GameFrame.class.getResource("/Chicken_Invaders_resources/backGround.jpeg")));
+		//backGround.setBounds(6, -12, 600, 600);
+		//contentPane.add(backGround);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -42,9 +38,10 @@ public class GameFrame extends JFrame {
 		contentPane.add(spaceship);
 		Chicken chicken=new Chicken(2, 2, Chicken.chickenColor.red);
 		contentPane.add(chicken);
-		contentPane.add(chickensMat);
+		//contentPane.add(chickensMat);
 		chicken.setLocation(200,200);
 		chicken.setSize(112, 88);
+		
 		addKeyListener(new KeyListener() {
 
 			@Override
@@ -84,5 +81,9 @@ public class GameFrame extends JFrame {
 			public void keyPressed(KeyEvent e) {}
 		});
 	}
+	
+	public void printChicken (){
+	}
+	
 
 }
