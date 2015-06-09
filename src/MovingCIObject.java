@@ -39,11 +39,7 @@ public abstract class MovingCIObject extends JLabel implements ActionListener{
 		timer.addActionListener(this);
 	}
 
-	//protected abstract boolean bomb(MovingCIObject bomber);
-
-
 	
-
 
 	public void delete() {
 		board.getContentPane().remove(this);

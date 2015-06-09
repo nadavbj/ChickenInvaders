@@ -1,8 +1,8 @@
-/*
+
 public class RedShot extends Shot implements Visitable{
-	String iconPath = ("/Chicken_Invaders_resources/red.png");
+	static String iconPath = ("/Chicken_Invaders_resources/red.png");
 	
-	public RedShot(String iconPath) {
+	public RedShot() {
 		super(iconPath);
 		// TODO Auto-generated constructor stub
 	}
@@ -17,4 +17,3 @@ public class RedShot extends Shot implements Visitable{
 	}
 
 }
-*/

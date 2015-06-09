@@ -10,11 +10,9 @@ import javax.swing.Icon;
 
 public class Shot extends Active {
 
-	public enum shotColor{red,blue,yellow,black};
-	private shotColor c;
-	public Shot(shotColor c) {
-		super("/Chicken_Invaders_resources/"+c+".png");
-		this.c=c;
+	
+	public Shot(String iconPath) {
+		super(iconPath);
 		type="Shot";
 	}
 	
@@ -37,17 +35,13 @@ public class Shot extends Active {
 			super.actionPerformed(e);
 	}
 
-	public shotColor getColor() {
-		return c;
-	}
-
-	public void setColor(shotColor c) {
-		this.c = c;
-	}
+	
 
 	@Override
 	public void shooting(MovingCIObject bomber) {
-		// bomber.accept(this);
-		
+		 
+	}
+	public void shooting(PassiveCIObject bomber) {
+		 bomber.accept(this);
 	}
 }

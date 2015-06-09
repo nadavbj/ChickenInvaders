@@ -1,8 +1,8 @@
 
 public class BlackShot extends Shot implements Visitable{
-	String iconPath = ("/Chicken_Invaders_resources/black.png");
+	static String iconPath = ("/Chicken_Invaders_resources/black.png");
 	
-	public BlackShot(String iconPath) {
+	public BlackShot() {
 		super(iconPath);
 		// TODO Auto-generated constructor stub
 	}

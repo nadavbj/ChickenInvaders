@@ -12,7 +12,7 @@ import javax.swing.border.EmptyBorder;
 public class BlueChicken extends Chicken{
 	
 	public BlueChicken(int col, int raw) {
-	super("/Users/yarden/git/ChickenInvaders/src/Chicken_Invaders_resources/chicken_green", col, raw);
+	super("/Chicken_Invaders_resources/chicken/chicken_blue.PNG", col, raw);
 	}
 	
 

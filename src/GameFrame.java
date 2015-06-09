@@ -15,17 +15,20 @@ import javax.swing.border.EmptyBorder;
 public class GameFrame extends JFrame {
 
 	private JPanel contentPane;
-	private Shot.shotColor color=Shot.shotColor.black;
 	private JLabel backGround;
 	private JPanel boardPanel;
 	private BlueChicken b;
-	
+
+	public static void main(String[] args) {
+		new GameFrame().setVisible(true);
+	}
+
 	public GameFrame() {
-	
-		
+
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 600);
-		
+		setBounds(100, 100, 1000, 600);
+
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -33,21 +36,9 @@ public class GameFrame extends JFrame {
 		MovingCIObject.board=this;
 		final Spaceship spaceship=new Spaceship();
 		contentPane.add(spaceship);
-	
-		boardPanel = new JPanel();
-		boardPanel.setLayout(new GridLayout(4, 8));
-		contentPane.add(boardPanel, BorderLayout.NORTH);
-		
 
-		boardPanel.setSize(600, 600);
-		/*
-		backGround = new JLabel("");
-		backGround.setIcon(new ImageIcon(GameFrame.class.getResource("/Chicken_Invaders_resources/back3.jpg")));
-		backGround.setBounds(0, 0, 600, 600);
-		contentPane.add(backGround);
-		*/
-		
-		
+		Chicken.load_level(1);
+
 		addKeyListener(new KeyListener() {
 
 			@Override
@@ -56,30 +47,48 @@ public class GameFrame extends JFrame {
 			@Override
 			public void keyReleased(KeyEvent e) {
 
-				Shot s=null;
-
 				switch (e.getKeyCode()) {
 				case KeyEvent.VK_1:
 				case KeyEvent.VK_NUMPAD1:
-					color=Shot.shotColor.black;
+					lastKey=1;
 					break;
 				case KeyEvent.VK_2:
 				case KeyEvent.VK_NUMPAD2:
-					color=Shot.shotColor.red;
-					break;case KeyEvent.VK_3:
-					case KeyEvent.VK_NUMPAD3:
-						color=Shot.shotColor.blue;
-						break;case KeyEvent.VK_4:
-						case KeyEvent.VK_NUMPAD4:
-							color=Shot.shotColor.yellow;			
-						case KeyEvent.VK_SPACE:
-							s=new Shot(color);
-							contentPane.add(s);
-							s.setLocation(spaceship.getX()+spaceship.getWidth()/2-10,spaceship.getY());
-							break;
+					lastKey=2;
+					break;
+				case KeyEvent.VK_3:
+				case KeyEvent.VK_NUMPAD3:
+					lastKey=3;
+					break;
+				case KeyEvent.VK_4:
+				case KeyEvent.VK_NUMPAD4:
+					lastKey=4;
+					break;
+				case KeyEvent.VK_SPACE:
+					Shot s=null;
+					switch (lastKey) {
+					case 1:
+						s=new BlackShot();
+						break;
+					case 2:
+						s=new RedShot();
+						break;
+					case 3:
+						s=new BlueShot();
+						break;
+					case 4:
+						s=new YellowShot();
+						break;
 
-							default:
-							return;
+					default:
+						break;
+					}
+					contentPane.add(s);
+					s.setLocation(spaceship.getX()+spaceship.getWidth()/2-10,spaceship.getY());
+					break;
+
+				default:
+					return;
 				}
 			}
 
@@ -87,32 +96,6 @@ public class GameFrame extends JFrame {
 			public void keyPressed(KeyEvent e) {}
 		});
 	}
-	
-	public void addLevel (){
-		
-		JLabel ch = new JLabel ("");
-		JLabel space = new JLabel ("");
-		
-		for(int i =0;i<4;i++){
-			for(int j=0;j<8;j++){
-				this.b = new BlueChicken(i, j) ;
-				//ch = new JLabel(new ImageIcon("/Users/yarden/git/ChickenInvaders/src/Chicken_Invaders_resources/chicken/chicken_blue.PNG"));
-				space = new JLabel(new ImageIcon("/Users/yarden/git/ChickenInvaders/src/Chicken_Invaders_resources/background2.jpeg"));
-
-				b.setSize(134,96);
-				space.setSize(50, 50);
-				b.setLocation(0,0);
-				space.setLocation(0, 0);
-				boardPanel.add(ch);
-				boardPanel.add(space);
-
-			}
-				}
-				
-		boardPanel.setLocation(0, 0);
-
-	}
-	
-	
+	int lastKey=1;
 
 }

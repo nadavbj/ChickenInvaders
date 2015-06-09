@@ -1,8 +1,8 @@
 
 public class YellowShot extends Shot implements Visitable{
-	String iconPath = ("/Chicken_Invaders_resources/red.png");
+	static String iconPath = ("/Chicken_Invaders_resources/yellow.png");
 	
-	public YellowShot(String iconPath) {
+	public YellowShot() {
 		super(iconPath);
 		// TODO Auto-generated constructor stub
 	}
