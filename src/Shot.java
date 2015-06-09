@@ -50,14 +50,4 @@ public class Shot extends Active {
 		// bomber.accept(this);
 		
 	}
-
-
-	
-
-
-
-
-
-
-	
 }

@@ -1,4 +1,3 @@
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -18,6 +17,7 @@ public abstract class MovingCIObject extends JLabel implements ActionListener{
 
 	protected static Collection<MovingCIObject> aliveMovingObjects=null;
 	public static GameFrame board;
+	
 	protected static WeakHashMap<String, Icon> picsCache;
 	public static Timer timer;
 	protected String type;
