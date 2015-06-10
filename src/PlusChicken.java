@@ -12,11 +12,28 @@ public class PlusChicken extends Chicken{
 	
 
 	@Override
-	public void accept(Visitor m) {
+	public void visit(RedShot red) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	@Override
+	public void visit(BlueShot blue) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visit(YellowShot yellow) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visit(BlackShot black) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 }

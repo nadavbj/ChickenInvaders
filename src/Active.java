@@ -25,14 +25,15 @@ public abstract class Active extends MovingCIObject implements Visitor {
 			shooting(movingCIObjectToBomb);
 		}
 	}
-	@Override
+	
 	public void shooting(MovingCIObject bomber) {}
 
 	
-	public void shooting(PassiveCIObject passive) {
-		passive.accept(this);
-		delete();
-	}
+	//public void shooting(PassiveCIObject passive) {
+		//passive.accept(this);
+		//delete();
+	
+//}
 	
 	
 }

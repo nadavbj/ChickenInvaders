@@ -1,3 +1,5 @@
 public interface Visitable {
-	public void accept(Visitor m);
+
+	public void shooting(Visitor v);
+	
 }

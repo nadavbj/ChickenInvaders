@@ -9,19 +9,18 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class BlueChicken extends Chicken{
+public class GreenChicken extends Chicken{
 	private GameManager gm;
-	public BlueChicken(int col, int raw) {
+	public GreenChicken(int col, int raw) {
 	super("/Chicken_Invaders_resources/chicken/chicken_blue.jpg", col, raw);
 	gm = new GameManager();
 	}
 
-	
-	@Override
-	public void visit(RedShot red) {
-		gm.kill2Chickens(new PurpleChicken());
-		
+	public GreenChicken() {
+		super("/Chicken_Invaders_resources/chicken/chicken_blue.jpg",-1,-1);
 	}
+	
+	
 
 	@Override
 	public void visit(BlueShot blue) {
@@ -31,15 +30,10 @@ public class BlueChicken extends Chicken{
 
 	@Override
 	public void visit(YellowShot yellow) {
-		gm.kill2Chickens(new GreenChicken());
+		gm.ToKill(this.raw,this.col);
 		
 	}
 
-	@Override
-	public void visit(BlackShot black) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 
 }

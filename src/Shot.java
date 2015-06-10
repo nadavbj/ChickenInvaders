@@ -8,26 +8,14 @@ import javax.management.RuntimeErrorException;
 import javax.swing.Icon;
 
 
-public class Shot extends Active {
+public class Shot extends Active implements Visitable{
 
-	public enum shotColor{red,blue,yellow,black};
-	private shotColor c;
-	public Shot(shotColor c) {
-		super("/Chicken_Invaders_resources/"+c+".png");
-		this.c=c;
+	
+	public Shot(String iconPath) {
+		super(iconPath);
 		type="Shot";
 	}
 	
-	/*
-	@Override
-	protected boolean bomb(MovingCIObject bomber) {
-		if("Chicken".equals(bomber.type)){
-			return true;
-		}
-		return false;
-	}
-	*/
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		setLocation(getX(),getY()-4);
@@ -37,17 +25,37 @@ public class Shot extends Active {
 			super.actionPerformed(e);
 	}
 
-	public shotColor getColor() {
-		return c;
-	}
-
-	public void setColor(shotColor c) {
-		this.c = c;
+	@Override
+	public void visit(RedShot red) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public void shooting(MovingCIObject bomber) {
-		// bomber.accept(this);
+	public void visit(BlueShot blue) {
+		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void visit(YellowShot yellow) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visit(BlackShot black) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void shooting(Visitor v) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
+	
 }

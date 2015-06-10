@@ -3,8 +3,6 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.Icon;
 
-import com.sun.org.apache.bcel.internal.generic.RET;
-
 
 public class Egg extends PassiveCIObject {
 
@@ -24,14 +22,23 @@ public class Egg extends PassiveCIObject {
 			Egg.this.setLocation(getX(), getY()+2);
 	}
 	int exploed=0;
+
+	@Override
+	public void shooting(Visitor v) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 	
 
 	
-	@Override
-	public void accept(Visitor bomber) {}
-	public void accept(Spaceship bomber) 
+	//@Override
+	//public void accept(Visitor bomber) {}
+	/*public void accept(Spaceship bomber) 
 	{
 		setIcon(getIcon("/Chicken_Invaders_resources/resizeExp.png"));
 		exploed=1;	
-	}
+	}*/
+	
 }

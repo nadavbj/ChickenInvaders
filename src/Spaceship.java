@@ -1,6 +1,8 @@
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -9,7 +11,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 
-public class Spaceship extends Active{
+public class Spaceship extends Active {
 
 	
 	private static final String IMAGE_PATH = "/Chicken_Invaders_resources/spaceship.PNG";
@@ -33,14 +35,31 @@ public class Spaceship extends Active{
 		});;
 	}
 
+	@Override
+	public void visit(RedShot red) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visit(BlueShot blue) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visit(YellowShot yellow) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visit(BlackShot black) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
-	
-@Override
-public void actionPerformed(ActionEvent e) {
-	// TODO Auto-generated method stub
-	super.actionPerformed(e);
-	
-}
 
 
 

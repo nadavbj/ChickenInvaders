@@ -1,20 +1,20 @@
-/*
-public class RedShot extends Shot implements Visitable{
-	String iconPath = ("/Chicken_Invaders_resources/red.png");
+
+public class RedShot extends Shot {
+	static String iconPath = ("/Chicken_Invaders_resources/red.png");
 	
-	public RedShot(String iconPath) {
+	public RedShot() {
 		super(iconPath);
 		// TODO Auto-generated constructor stub
 	}
 
- 
-	
-	
 	@Override
-	public void accept(Visitor m) {
-		// TODO Auto-generated method stub
+	public void shooting(Visitor v) {
+       
+		v.visit(this);
 		
 	}
 
+	
+	
+
 }
-*/

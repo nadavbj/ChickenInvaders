@@ -18,6 +18,7 @@ public abstract class MovingCIObject extends JLabel implements ActionListener{
 	protected static Collection<MovingCIObject> aliveMovingObjects=null;
 	public static GameFrame board;
 	
+	
 	protected static WeakHashMap<String, Icon> picsCache;
 	public static Timer timer;
 	protected String type;
@@ -39,11 +40,7 @@ public abstract class MovingCIObject extends JLabel implements ActionListener{
 		timer.addActionListener(this);
 	}
 
-	//protected abstract boolean bomb(MovingCIObject bomber);
-
-
 	
-
 
 	public void delete() {
 		board.getContentPane().remove(this);

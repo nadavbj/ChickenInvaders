@@ -1,20 +1,20 @@
 
-public class YellowShot extends Shot implements Visitable{
-	String iconPath = ("/Chicken_Invaders_resources/red.png");
+public class YellowShot extends Shot{
+	static String iconPath = ("/Chicken_Invaders_resources/yellow.png");
 	
-	public YellowShot(String iconPath) {
+	public YellowShot() {
 		super(iconPath);
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
+	public void shooting(Visitor v) {
+       
+		v.visit(this);
+		
+	}
 
 	
 	
-	
-	@Override
-	public void accept(Visitor m) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

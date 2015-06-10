@@ -5,18 +5,20 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class CircleChicken extends Chicken{
-	
+	GameManager gm;
 	public CircleChicken(int col, int raw) {
 	super("/Chicken_Invaders_resources/chicken/chicken_circle.PNG", col, raw);
+	gm = new GameManager();
 	}
 	
 
+
+
 	@Override
-	public void accept(Visitor m) {
-		// TODO Auto-generated method stub
+	public void visit(BlueShot blue) {
+		gm.circleChickKill(this.raw,this.col);
 		
 	}
 
-
-
+	
 }
