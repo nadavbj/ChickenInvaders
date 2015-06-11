@@ -6,7 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 
-public  class Chicken extends PassiveCIObject implements Visitor  {
+public abstract class Chicken extends PassiveCIObject implements Visitor  {
 	protected int raw,col;
 	private static Chicken[][]chickensMat=null;
 	enum chickenColor{red, blue, green, orange, purple, yellow, circle, plus, x};
@@ -122,6 +122,12 @@ public  class Chicken extends PassiveCIObject implements Visitor  {
 
 
 	@Override
+	public void delete() {
+		super.delete();
+		chickensMat[col][raw]=null;
+	}
+
+	@Override
 	public void visit(RedShot red) {
 		// TODO Auto-generated method stub
 		
@@ -144,7 +150,6 @@ public  class Chicken extends PassiveCIObject implements Visitor  {
 		// TODO Auto-generated method stub
 		
 	}
-
 	
 
 
