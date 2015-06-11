@@ -2,6 +2,7 @@
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.HeadlessException;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -52,7 +53,7 @@ public class MenuPanel extends JPanel implements ActionListener {
 		 gf = new GameFrame();
 		subs.add("Play");
 		subs.add("Set Level");
-		subs.add("Score Table");
+		subs.add("Hall Of Fame");
 		subs.add("Exit");
 		selectMenuItem=subs.get(0);
 		
@@ -89,8 +90,26 @@ public class MenuPanel extends JPanel implements ActionListener {
 						gf.setVisible(true);
 					    fFrame.dispose();
 				}
+				bounds = menuBounds.get("Hall Of Fame");
+				if (bounds.contains(e.getPoint()))
+				{
 				
-			}
+					gf.setFocusable(false);
+/*
+					try {
+						JOptionPane.showMessageDialog(this, this.ReadFromFile(),
+								"Top 10", JOptionPane.PLAIN_MESSAGE);
+					} catch (HeadlessException | IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+
+					this.requestFocus();
+				}
+				}
+			*/	
+				
+			}}
 			
 			public void mouseMoved(MouseEvent e)
 			{

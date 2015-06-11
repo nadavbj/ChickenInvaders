@@ -5,28 +5,56 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class YellowChicken extends Chicken{
-	GameManager gm;
+	Chicken[][]chickensMat;
+	Chicken c;
 	public YellowChicken(int col, int raw) {
 	super("/Chicken_Invaders_resources/chicken/chicken_yellow.jpg", col, raw);
-	gm = new GameManager();
+	
 	}
 	
 
 	@Override
 	public void visit(RedShot red) {
-		gm.kill2Chickens(new OrangeChicken());
+		int killC=2;
+		c = new OrangeChicken();
+		chickensMat = Chicken.getChickensMat();
+		for(int i=0; i<chickensMat.length && killC>0; i++)
+		{
+			for (int j=0; j<chickensMat[0].length && killC>0; j++)
+			{
+				if(chickensMat[i][j]==c)
+				{
+					chickensMat[i][j].delete();
+					killC--;
+				}
+			}
+		}
 		
 	}
 
 	@Override
 	public void visit(BlueShot blue) {
-		gm.kill2Chickens(new GreenChicken());
+		int killC=2;
+		c = new GreenChicken();
+		chickensMat = Chicken.getChickensMat();
+		for(int i=0; i<chickensMat.length && killC>0; i++)
+		{
+			for (int j=0; j<chickensMat[0].length && killC>0; j++)
+			{
+				if(chickensMat[i][j]==c)
+				{
+					chickensMat[i][j].delete();
+					killC--;
+				}
+			}
+		}
 		
 	}
 
 	@Override
 	public void visit(YellowShot yellow) {
-		gm.ToKill(this.raw,this.col);
+		chickensMat = Chicken.getChickensMat();
+		chickensMat[this.raw][this.col].delete(); 
 		
 	}
 

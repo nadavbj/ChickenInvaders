@@ -10,34 +10,62 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 public class BlueChicken extends Chicken{
-	private GameManager gm;
+	Chicken[][]chickensMat;
+	Chicken c;
 	public BlueChicken(int col, int raw) {
 	super("/Chicken_Invaders_resources/chicken/chicken_blue.jpg", col, raw);
-	gm = new GameManager();
+	
 	}
 
 	
 	@Override
 	public void visit(RedShot red) {
-		gm.kill2Chickens(new PurpleChicken());
+		int killC=2;
+		c = new PurpleChicken();
+		chickensMat = Chicken.getChickensMat();
+		for(int i=0; i<chickensMat.length && killC>0; i++)
+		{
+			for (int j=0; j<chickensMat[0].length && killC>0; j++)
+			{
+				if(chickensMat[i][j]==c)
+				{
+					chickensMat[i][j].delete();
+					killC--;
+				}
+			}
+		}
 		
 	}
 
 	@Override
 	public void visit(BlueShot blue) {
-		gm.ToKill(this.raw,this.col);
+		chickensMat = Chicken.getChickensMat();
+		chickensMat[this.raw][this.col].delete(); 	
 		
 	}
 
 	@Override
 	public void visit(YellowShot yellow) {
-		gm.kill2Chickens(new GreenChicken());
+		c= new GreenChicken();
+		chickensMat = Chicken.getChickensMat();
+		int killC=2;
+		for(int i=0; i<chickensMat.length && killC>0; i++)
+		{
+			for (int j=0; j<chickensMat[0].length && killC>0; j++)
+			{
+				if(chickensMat[i][j]==c)
+				{
+					chickensMat[i][j].delete();
+					killC--;
+				}
+			}
+		}
 		
 	}
 
 	@Override
 	public void visit(BlackShot black) {
-		// TODO Auto-generated method stub
+		return;
 		
 	}
 	

@@ -5,10 +5,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class OrangeChicken extends Chicken{
-	GameManager gm;
+	Chicken[][]chickensMat;
+	Chicken c;
 	public OrangeChicken(int col, int raw) {
 	super("/Chicken_Invaders_resources/chicken/chicken_orange.jpg", col, raw);
-	gm = new GameManager();
+	
 	}
 	
 	public OrangeChicken() {
@@ -16,14 +17,16 @@ public class OrangeChicken extends Chicken{
 	}
 	@Override
 	public void visit(RedShot red) {
-		gm.ToKill(this.raw,this.col);
+		chickensMat = Chicken.getChickensMat();
+		chickensMat[this.raw][this.col].delete(); 
 		
 	}
 
 	
 	@Override
 	public void visit(YellowShot yellow) {
-		gm.ToKill(this.raw,this.col);
+		chickensMat = Chicken.getChickensMat();
+		chickensMat[this.raw][this.col].delete(); 
 		
 	}
 

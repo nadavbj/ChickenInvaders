@@ -10,10 +10,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 public class GreenChicken extends Chicken{
-	private GameManager gm;
+	Chicken[][]chickensMat;
+	Chicken c;
 	public GreenChicken(int col, int raw) {
 	super("/Chicken_Invaders_resources/chicken/chicken_blue.jpg", col, raw);
-	gm = new GameManager();
 	}
 
 	public GreenChicken() {
@@ -24,13 +24,15 @@ public class GreenChicken extends Chicken{
 
 	@Override
 	public void visit(BlueShot blue) {
-		gm.ToKill(this.raw,this.col);
+		chickensMat = Chicken.getChickensMat();
+		chickensMat[this.raw][this.col].delete(); 
 		
 	}
 
 	@Override
 	public void visit(YellowShot yellow) {
-		gm.ToKill(this.raw,this.col);
+		chickensMat = Chicken.getChickensMat();
+		chickensMat[this.raw][this.col].delete(); 
 		
 	}
 

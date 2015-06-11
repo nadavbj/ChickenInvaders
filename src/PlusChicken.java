@@ -5,7 +5,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class PlusChicken extends Chicken{
-	
+	Chicken[][]chickensMat;
+	Chicken c;
 	public PlusChicken(int col, int raw) {
 	super("/Chicken_Invaders_resources/chicken/special/chicken_plus.PNG", col, raw);
 	}
@@ -31,7 +32,16 @@ public class PlusChicken extends Chicken{
 
 	@Override
 	public void visit(BlackShot black) {
-		// TODO Auto-generated method stub
+		chickensMat = Chicken.getChickensMat();
+		for(int i=0; i<chickensMat[this.raw].length; i++)   /// killing all the chickens in the same row
+		{
+			chickensMat[this.raw][i].delete();
+		}
+		
+		for(int i=0; i<chickensMat.length;i++)		/// killing all the chickens in the same col
+		{
+			chickensMat[i][this.col].delete();
+		}
 		
 	}
 
