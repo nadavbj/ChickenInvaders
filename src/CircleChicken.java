@@ -7,7 +7,7 @@ import javax.swing.JLabel;
 public class CircleChicken extends Chicken{
 	GameManager gm;
 	public CircleChicken(int col, int raw) {
-	super("/Chicken_Invaders_resources/chicken/chicken_circle.PNG", col, raw);
+	super("/Chicken_Invaders_resources/chicken/special/chicken_circle.PNG", col, raw);
 	gm = new GameManager();
 	}
 	

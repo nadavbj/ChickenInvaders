@@ -1,7 +1,7 @@
 import java.awt.event.ActionEvent;
 
 
-public abstract class PassiveCIObject extends MovingCIObject implements Visitable 
+public abstract class PassiveCIObject extends MovingCIObject implements Visitor 
 	{
 	public PassiveCIObject(String iconPath) {
 		super(iconPath);

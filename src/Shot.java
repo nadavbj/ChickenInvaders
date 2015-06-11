@@ -25,29 +25,8 @@ public class Shot extends Active implements Visitable{
 			super.actionPerformed(e);
 	}
 
-	@Override
-	public void visit(RedShot red) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
-	@Override
-	public void visit(BlueShot blue) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visit(YellowShot yellow) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visit(BlackShot black) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void shooting(Visitor v) {

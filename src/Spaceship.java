@@ -36,29 +36,12 @@ public class Spaceship extends Active {
 	}
 
 	@Override
-	public void visit(RedShot red) {
+	public void shooting(Visitor v) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
-	public void visit(BlueShot blue) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visit(YellowShot yellow) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visit(BlackShot black) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 	
 
 

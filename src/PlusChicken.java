@@ -7,7 +7,7 @@ import javax.swing.JLabel;
 public class PlusChicken extends Chicken{
 	
 	public PlusChicken(int col, int raw) {
-	super("/Chicken_Invaders_resources/chicken/chicken_plus.PNG", col, raw);
+	super("/Chicken_Invaders_resources/chicken/special/chicken_plus.PNG", col, raw);
 	}
 	
 
