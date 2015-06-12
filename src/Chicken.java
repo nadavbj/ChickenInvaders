@@ -6,12 +6,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 
-public abstract class Chicken extends PassiveCIObject implements Visitor  {
+public abstract class Chicken extends MovingCIObject implements Visitor  {
 	protected int raw,col;
-	private static Chicken[][]chickensMat=null;
+	protected static Chicken[][]chickensMat=null;
 	enum chickenColor{red, blue, green, orange, purple, yellow, circle, plus, x};
 	chickenColor color;
-	private static int direction=3;
+	int baseY;
+	double time=0;
 	public Chicken(String iconPath, int col, int raw) {
 		super(iconPath);
 		if(chickensMat==null)
@@ -19,21 +20,14 @@ public abstract class Chicken extends PassiveCIObject implements Visitor  {
 		chickensMat[col][raw]=this;
 		this.raw=raw;
 		this.col=col;
-
+baseY=col*(getHeight()+10);
 
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		setSize(112, 88);
-		if(Math.random()<0.001)
-		{
-			Egg egg=new Egg(Chicken.this.getLocation());
-			board.getContentPane().add(egg);
-		}
-/*
-		setLocation(getX()+direction, getY());
-		if(getX()==10||getX()==board.getWidth()-getWidth()-10)
-			direction=-direction;*/
+		time+=0.1;
+setLocation(getX(),baseY+(int)(Math.sin(time)*10));
 	}
 
 
@@ -113,8 +107,7 @@ public abstract class Chicken extends PassiveCIObject implements Visitor  {
 				board.getContentPane().add(c);
 				
 				c.setSize(114, 80);
-				c.setLocation(j*(c.getWidth()+10), i*(c.getHeight()+10));
-				
+				c.setLocation(j*(c.getWidth()+10), i*(c.getHeight()+10));				
 			}
 		}
 	}
@@ -127,28 +120,30 @@ public abstract class Chicken extends PassiveCIObject implements Visitor  {
 	}
 
 	@Override
-	public void visit(RedShot red) {
+	public void visit(RedShot shot) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void visit(BlueShot blue) {
+	public void visit(BlackShot shot) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void visit(YellowShot yellow) {
+	public void visit(BlueShot shot) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void visit(BlackShot black) {
+	public void visit(YellowShot shot) {
 		// TODO Auto-generated method stub
 		
 	}
+
+	
 	
 
 

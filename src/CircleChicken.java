@@ -4,21 +4,19 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+
 public class CircleChicken extends Chicken{
-	Chicken[][]chickensMat;
-	Chicken c;
+
 	public CircleChicken(int col, int raw) {
-	super("/Chicken_Invaders_resources/chicken/special/chicken_circle.PNG", col, raw);
-	
+		super("/Chicken_Invaders_resources/chicken/special/chicken_circle.PNG", col, raw);
+		color=chickenColor.circle;
 	}
-	
 
 
 
-	@Override
+
 	public void visit(BlueShot blue) {
-		chickensMat = Chicken.getChickensMat();
-		chickensMat[this.raw][this.col].delete();     //killing herself
+		delete();     //killing herself
 		if(this.raw>0)    //check if the chicken isn't in the corner
 		{
 			chickensMat[this.raw-1][this.col].delete();  //killing the chicken in the same this.column 
@@ -51,9 +49,9 @@ public class CircleChicken extends Chicken{
 		{
 			chickensMat[this.raw+1][this.col+1].delete();		//killing the chicken in cross
 		}
-		
-		
+
+
 	}
 
-	
+
 }

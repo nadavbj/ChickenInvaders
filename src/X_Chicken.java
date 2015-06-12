@@ -4,26 +4,25 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+
 public class X_Chicken extends Chicken{
-	Chicken[][]chickensMat;
-	Chicken c;
+
 	public X_Chicken(int col, int raw) {
 	super("/Chicken_Invaders_resources/chicken/special/chicken_x.PNG", col, raw);
-	
+	color=chickenColor.x;
 	}
 	
 
 	
 
-	@Override
+	
 	public void visit(BlackShot black) {
-		chickensMat = Chicken.getChickensMat();
 		int rowT=this.raw;
 		int colT=this.col;
 		
 		while (this.raw>=0 &&this.col<chickensMat[this.raw].length)   // kill in X style
 		{
-			chickensMat[this.raw][this.col]=null;
+			chickensMat[this.raw][this.col].delete();
 			this.raw--;
 			this.col++;
 		}

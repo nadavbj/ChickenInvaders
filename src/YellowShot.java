@@ -4,17 +4,10 @@ public class YellowShot extends Shot{
 	
 	public YellowShot() {
 		super(iconPath);
-		// TODO Auto-generated constructor stub
 	}
-
 	@Override
 	public void shooting(Visitor v) {
-       
 		v.visit(this);
-		
+		delete();
 	}
-
-	
-	
-
 }
