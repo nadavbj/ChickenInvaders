@@ -57,6 +57,7 @@ public class GameFrame extends JFrame {
 
 			@Override
 			public void keyReleased(KeyEvent e) {
+				
 				switch (e.getKeyCode()) {
 				case KeyEvent.VK_1:
 				case KeyEvent.VK_NUMPAD1:
@@ -95,12 +96,8 @@ public class GameFrame extends JFrame {
 					s.setLocation(spaceship.getX()+spaceship.getWidth()/2-10,spaceship.getY());
 					break;
 				case  KeyEvent.VK_RIGHT:
-					if(spaceship.getX()+33<getWidth())
-					spaceship.setLocation(spaceship.getX()+33,spaceship.getY());
-					break;
 				case  KeyEvent.VK_LEFT:
-					if(spaceship.getX()-33>0)
-					spaceship.setLocation(spaceship.getX()-33,spaceship.getY());
+					spaceship.direction=0;
 					break;
 				default:
 					break;
@@ -109,7 +106,19 @@ public class GameFrame extends JFrame {
 			}
 
 			@Override
-			public void keyPressed(KeyEvent e) {}
+			public void keyPressed(KeyEvent e) {
+				switch (e.getKeyCode()) {
+				case  KeyEvent.VK_RIGHT:
+					spaceship.direction=10;
+					break;
+				case  KeyEvent.VK_LEFT:
+					spaceship.direction=-10;
+					break;
+
+				default:
+					break;
+				}
+			}
 		});
 
 		/*

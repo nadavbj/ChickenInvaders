@@ -15,7 +15,7 @@ public class Spaceship extends MovingCIObject {
 
 	
 	private static final String IMAGE_PATH = "/Chicken_Invaders_resources/spaceship.PNG";
-
+int direction=0;
 	public Spaceship() {
 		super(IMAGE_PATH);
 		type="Spaceship";
@@ -37,7 +37,10 @@ public class Spaceship extends MovingCIObject {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {}
+	public void actionPerformed(ActionEvent e) {
+		if(getX()+direction<board.getWidth()-getWidth()&&getX()+direction>0)
+			setLocation(getX()+direction,getY());
+	}
 
 
 }
