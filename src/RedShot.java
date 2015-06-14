@@ -4,17 +4,10 @@ public class RedShot extends Shot {
 	
 	public RedShot() {
 		super(iconPath);
-		// TODO Auto-generated constructor stub
 	}
-
 	@Override
 	public void shooting(Visitor v) {
-       
 		v.visit(this);
-		
+		delete();
 	}
-
-	
-	
-
 }

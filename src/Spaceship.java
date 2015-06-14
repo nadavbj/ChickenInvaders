@@ -11,7 +11,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 
-public class Spaceship extends Active {
+public class Spaceship extends MovingCIObject {
 
 	
 	private static final String IMAGE_PATH = "/Chicken_Invaders_resources/spaceship.PNG";
@@ -19,7 +19,7 @@ public class Spaceship extends Active {
 	public Spaceship() {
 		super(IMAGE_PATH);
 		type="Spaceship";
-		board.getContentPane().addMouseMotionListener(new MouseMotionListener() {
+	/*	board.getContentPane().addMouseMotionListener(new MouseMotionListener() {
 // fix
 			@Override
 			public void mouseMoved(MouseEvent e) {
@@ -32,18 +32,12 @@ public class Spaceship extends Active {
 				// TODO Auto-generated method stub
 
 			}
-		});;
-	}
-
-	@Override
-	public void shooting(Visitor v) {
-		// TODO Auto-generated method stub
+		});*/
 		
 	}
 
-	
-	
-
+	@Override
+	public void actionPerformed(ActionEvent e) {}
 
 
 }

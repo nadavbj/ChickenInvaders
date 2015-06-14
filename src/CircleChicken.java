@@ -1,24 +1,71 @@
+import java.awt.Menu;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
+import java.net.URL;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+
 public class CircleChicken extends Chicken{
-	Chicken[][]chickensMat;
-	Chicken c;
+	private Clip clip;
 	public CircleChicken(int col, int raw) {
-	super("/Chicken_Invaders_resources/chicken/special/chicken_circle.PNG", col, raw);
-	
+		super("/Chicken_Invaders_resources/chicken/special/chicken_circle.PNG", col, raw);
+		color=chickenColor.circle;
 	}
-	
 
 
 
-	@Override
-	public void visit(BlueShot blue) {
-		chickensMat = Chicken.getChickensMat();
-		chickensMat[this.raw][this.col].delete();     //killing herself
+
+	public void visit(BlackShot black) {
+		delete();     //killing herself
+		//play clip
+				try {
+					URL url = Menu.class.getResource("/Chicken_Invaders_resources/sound/explosion.wav");
+					AudioInputStream audioIn = null;
+					try {
+						audioIn = AudioSystem.getAudioInputStream(url);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					clip = AudioSystem.getClip();
+					try {
+						clip.open(audioIn);
+						clip.loop(0);
+					} 
+					catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				catch (UnsupportedAudioFileException murle) {
+					System.out.println(murle);
+				} catch (LineUnavailableException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				for(int t = col-1 ; t<=col+1;t++){
+					
+					// kill the middelROW
+					chickensMat[this.raw][t].delete();
+					
+
+					// kill the upperRow
+					chickensMat[this.raw-1][t].delete();
+					
+					
+					// kill the DownRow
+					chickensMat[raw+1][t].delete();
+				}
+				/*
 		if(this.raw>0)    //check if the chicken isn't in the corner
 		{
 			chickensMat[this.raw-1][this.col].delete();  //killing the chicken in the same this.column 
@@ -50,10 +97,10 @@ public class CircleChicken extends Chicken{
 		if(this.raw<chickensMat.length && this.col<chickensMat[this.raw].length)
 		{
 			chickensMat[this.raw+1][this.col+1].delete();		//killing the chicken in cross
-		}
-		
+		}*/
+
 		
 	}
 
-	
+
 }

@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.Timer;
 
 
+
+
 public abstract class MovingCIObject extends JLabel implements ActionListener{
 
 	protected static Collection<MovingCIObject> aliveMovingObjects=null;
@@ -44,9 +46,11 @@ public abstract class MovingCIObject extends JLabel implements ActionListener{
 
 	public void delete() {
 		board.getContentPane().remove(this);
+		
 		aliveMovingObjects.remove(this);
 		timer.removeActionListener(this);
 		board.repaint();
+		board.finishLevel();
 	}
 
 

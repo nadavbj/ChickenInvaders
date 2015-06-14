@@ -1,14 +1,16 @@
-import java.awt.Color;
+ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.management.RuntimeErrorException;
 import javax.swing.Icon;
 
 
-public class Shot extends Active implements Visitable{
+public abstract class Shot extends MovingCIObject implements Visitable{
 
 	
 	public Shot(String iconPath) {
@@ -16,25 +18,31 @@ public class Shot extends Active implements Visitable{
 		type="Shot";
 	}
 	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		setLocation(getX(),getY()-4);
+		setLocation(getX(),getY()-8);
 		if(getY()<=0)
 			delete();
-		else
-			super.actionPerformed(e);
+		Set<Chicken>objectsToBomb=new HashSet<Chicken>();
+		for (Chicken[] row : Chicken.chickensMat) {
+			for (Chicken chicken : row) {
+				if(chicken!=null)
+				if(getBounds().intersects(chicken.getBounds()) )
+				{
+					objectsToBomb.add(chicken);
+				}
+			}
+			
+		}
+		for (Chicken movingCIObjectToBomb : objectsToBomb){
+			shooting(movingCIObjectToBomb);
+		}
 	}
-
+	
+	
 	
 
-
-	@Override
-	public void shooting(Visitor v) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
 
 	
 }
