@@ -1,5 +1,10 @@
-Nir;9520; 0100
-Yarden ;3340; 0155
-Niv ;2350 ; 0200
-Aviv ;300 ; 0355
-Nadav Name;300 ; 0400
+Nir;9520
+Your Namegg;3340
+Nir;2350
+Nir;300
+Your Name;300
+Nir;90
+Your Name;90
+Aviv;30
+Your Name;30
+Your Name;30

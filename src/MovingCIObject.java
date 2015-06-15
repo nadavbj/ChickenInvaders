@@ -46,7 +46,6 @@ public abstract class MovingCIObject extends JLabel implements ActionListener{
 
 	public void delete() {
 		board.getContentPane().remove(this);
-		
 		aliveMovingObjects.remove(this);
 		timer.removeActionListener(this);
 		board.repaint();

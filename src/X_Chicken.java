@@ -16,7 +16,7 @@ import javax.swing.JLabel;
 public class X_Chicken extends Chicken{
 	private Clip clip;
 	public X_Chicken(int col, int raw) {
-	super("/Chicken_Invaders_resources/chicken/special/chicken_x.PNG", col, raw);
+	super("/Chicken_Invaders_resources/chicken/special/x_chicken.png", col, raw);
 	color=chickenColor.x;
 	}
 	
@@ -27,7 +27,7 @@ public class X_Chicken extends Chicken{
 	public void visit(BlackShot black) {
 		int rowT=this.raw;
 		int colT=this.col;
-		delete();
+		//delete();
 		//play clip
 				try {
 					URL url = Menu.class.getResource("/Chicken_Invaders_resources/sound/explosion.wav");
@@ -57,16 +57,18 @@ public class X_Chicken extends Chicken{
 				
 				//the current Xchicken
 				
-
+/*
 				int u =this.raw; int t =this.col ; 
 				while (u<3 && t<7)
 
 				{
+					if (chickensMat[u+1][t+1]!=null)
+					{
 					//down right diognal 
 					chickensMat[u+1][t+1].delete();
 					u++;
 					t++;
-
+					}
 				}
 
 				u= this.raw;
@@ -76,10 +78,11 @@ public class X_Chicken extends Chicken{
 
 				{
 					//up right diognal
+					if (chickensMat[u-1][t+1]!=null){
 					chickensMat[u-1][t+1].delete();
 					u--;
 					t++;
-
+					}
 				}
 
 				u= this.raw;
@@ -89,10 +92,11 @@ public class X_Chicken extends Chicken{
 
 				{
 					//down left diognal
+					if (chickensMat[u+1][t-1]!=null){
 					chickensMat[u+1][t-1].delete();
 					u++;
 					t--;
-
+					}
 				}
 
 				u= this.raw;
@@ -101,17 +105,18 @@ public class X_Chicken extends Chicken{
 				while (u>0 && t>0)
 
 				{
+					if (chickensMat[u-1][t-1]!=null){
 					//up left diognal
 					chickensMat[u-1][t-1].delete();
 					u--;
 					t--;
-
+					}
 				}
 				
+				*/
 				
 				
-				/*
-		while (this.raw>=0 &&this.col<chickensMat[this.raw].length)   // kill in X style
+		while (this.raw>=0 &&this.col<chickensMat[this.raw].length && chickensMat[this.raw][this.col]!=null)   // kill in X style
 		{
 			chickensMat[this.raw][this.col].delete();
 			this.raw--;
@@ -121,9 +126,9 @@ public class X_Chicken extends Chicken{
 		this.raw=rowT+1;
 		this.col=colT+1;
 		
-		while(this.raw<chickensMat.length && this.col<chickensMat[this.raw].length)   // kill in X style
+		while(this.raw<chickensMat.length && this.col<chickensMat[this.raw].length && chickensMat[this.raw][this.col]!=null)   // kill in X style
 		{
-			chickensMat[this.raw][this.col]=null;  	
+			chickensMat[this.raw][this.col].delete();  	
 			this.raw++;
 			this.col++;
 		}
@@ -131,9 +136,9 @@ public class X_Chicken extends Chicken{
 		this.raw=rowT+1;
 		this.col=colT-1;
 		
-		while (this.raw<chickensMat.length && this.col>=0)  
+		while (this.raw<chickensMat.length && this.col>=0&& chickensMat[this.raw][this.col]!=null)  
 		{
-			chickensMat[this.raw][this.col]=null;  	
+			chickensMat[this.raw][this.col].delete();  	
 			this.raw++;
 			this.col--;
 		}
@@ -141,13 +146,13 @@ public class X_Chicken extends Chicken{
 		this.raw=rowT-1;
 		this.col=colT-1;
 		
-		while(this.col>=0 && this.raw>=0)     
+		while(this.col>=0 && this.raw>=0&& chickensMat[this.raw][this.col]!=null)     
 		{
-			chickensMat[this.raw][this.col]=null;  	
+			chickensMat[this.raw][this.col].delete(); 	
 			this.raw--;
 			this.col--;
 		}
-		*/
+		
 		
 	}
 

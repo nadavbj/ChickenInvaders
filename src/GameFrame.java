@@ -39,7 +39,7 @@ public class GameFrame extends JFrame{
 
 	private JPanel contentPane;
 	private StatusPanel status; 
-	private String playerName= "player";
+	private String playerName= "Chicken Player";
 	private int level=1;
 	private File file = new File("top10.txt");
 	private int[] scoreArray = new int[10];
@@ -80,7 +80,7 @@ public class GameFrame extends JFrame{
      	contentPane.add(tool);
    
 		this.level = level;
-		setGameLevel(3);
+		Chicken.load_level(3);
 		//JOptionPane.showMessageDialog(null, "Press DOUBLE ENTER to start game");
 		//contentPane.add(status, BorderLayout.LINE_END);
 		addKeyListener(new KeyListener() {
@@ -95,7 +95,7 @@ public class GameFrame extends JFrame{
 					if(!status.isRunning){
 						status.startTime= System.currentTimeMillis();
 						status.isRunning= true;
-						status.updater= new Thread();
+						status.updater= new Thread(status);
 						status.updater.start();
 					}
 			    }
@@ -205,34 +205,48 @@ public class GameFrame extends JFrame{
 	}
 
 	public void setGameLevel (int level){
-	Chicken.load_level(level);
+	
 	}
 
 	
+	
+	
 		public void finishLevel()
 		{
-						//check if gameOver
-						if(gameOver()){
-							//reset timer
-							if(status.isRunning()){
-								long elapsed= System.currentTimeMillis() - status.getStartTime();
-								status.setRunning(false);
-						        try{
-						        	status.getUpdater().join();
-						            // Wait for updater to finish
-						        }
-						        catch(InterruptedException ie) {}
-						        
+			//check if the level is over
+			if(gameOver()){
+				
+				if ( level ==5){
+					EntryWindow entry = new EntryWindow();
+					entry.setVisible(true);
+					dispose();
+				}
+				
+				if ( level ==6){
+					EntryWindow entry = new EntryWindow();
+					entry.setVisible(true);
+					dispose();
+				}
+			//reset timer
+				if(status.isRunning()){
+					long elapsed= System.currentTimeMillis() - status.getStartTime();
+					status.setRunning(false);
+						 try{
+						       status.getUpdater().join();
+						        // Wait for updater to finish
+						     }
+						 catch(InterruptedException ie) {}
 						        status.displayElapsedTime(elapsed);
 							}
 							
-							//calculate game score
+							
+							//calculate level score
 							status.setLevel_Score(Math.max(0, 600 - status.getLevel_Shots()*10 - status.getLevel_Time()));
 							
 							//insert into total level scores vector
 							status.getTotalLevelScores().add(status.getLevel_Score());
 
-							//calculate sum of level scores
+							//calculate sum of levels scores
 							int sum = 0;
 							for(int q=0;q<status.getTotalLevelScores().size();q++){
 								sum = sum + status.getTotalLevelScores().elementAt(q);
@@ -240,7 +254,7 @@ public class GameFrame extends JFrame{
 							
 							//show game results
 							JOptionPane.showMessageDialog(null, 
-									"Level Shots: "+status.getLevel_Shots()+ "\n" +
+									"Hi "+playerName+ "\n" +" Level Shots: "+status.getLevel_Shots()+ "\n" +
 									"Level Time: "+status.getLevel_Time() +" \n" + 
 									"Current Level Score: " + status.getLevel_Score() +"\n"+
 									"Total Level Scores: " + sum);								
@@ -254,18 +268,30 @@ public class GameFrame extends JFrame{
 							
 							//increase level by 1
 							level++;
-							
+							Chicken.load_level(level);
 							//load next game
-							if(level<5){
+							if(level>=1 && level <=4){
 								Chicken.load_level(level);
 								JOptionPane.showMessageDialog(null, "Press ENTER to start game");
 							}
 							else{
 								//NO MORE LEVELS TO PLAY
-								EntryWindow entry = new EntryWindow();
+								EntryWindow	 entry = new EntryWindow();
 								entry.setVisible(true);
 								dispose();
-							}
+								
+							
+							/*	
+							// For Bonus saving
+								if (level==4){
+									if(gameOver()){
+										JOptionPane.showMessageDialog(null, "Hi "+ playerName + "You got " +sum + "scores in this game" + "\n" + 
+									"Your time is: "+ status.getLevel_Time());
+										
+									}
+									
+								}
+*/							}
 							
 						}
 	

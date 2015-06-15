@@ -16,7 +16,7 @@ import javax.swing.JLabel;
 public class CircleChicken extends Chicken{
 	private Clip clip;
 	public CircleChicken(int col, int raw) {
-		super("/Chicken_Invaders_resources/chicken/special/chicken_circle.PNG", col, raw);
+		super("/Chicken_Invaders_resources/chicken/special/circle_chicken.PNG", col, raw);
 		color=chickenColor.circle;
 	}
 
@@ -24,7 +24,7 @@ public class CircleChicken extends Chicken{
 
 
 	public void visit(BlackShot black) {
-		delete();     //killing herself
+		
 		//play clip
 				try {
 					URL url = Menu.class.getResource("/Chicken_Invaders_resources/sound/explosion.wav");
@@ -55,15 +55,15 @@ public class CircleChicken extends Chicken{
 				for(int t = col-1 ; t<=col+1;t++){
 					
 					// kill the middelROW
-					chickensMat[this.raw][t].delete();
+					if(chickensMat[this.raw][t]!=null)  chickensMat[this.raw][t].delete();
 					
 
 					// kill the upperRow
-					chickensMat[this.raw-1][t].delete();
+					if(chickensMat[this.raw-1][t]!=null) chickensMat[this.raw-1][t].delete();
 					
 					
 					// kill the DownRow
-					chickensMat[raw+1][t].delete();
+					if(chickensMat[raw+1][t]!=null)chickensMat[raw+1][t].delete();
 				}
 				/*
 		if(this.raw>0)    //check if the chicken isn't in the corner

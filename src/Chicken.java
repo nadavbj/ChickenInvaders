@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 public abstract class Chicken extends MovingCIObject implements Visitor  {
 	protected int raw,col;
 	protected static Chicken[][]chickensMat=null;
-	enum chickenColor{red, blue, green, orange, purple, yellow, circle, plus, x};
+	enum chickenColor{red, blue, green, orange, purple, yellow, circle, plus, x, row, column, xor, flu};
 	chickenColor color;
 	int baseY;
 	double time=0;
@@ -63,6 +63,20 @@ setLocation(getX(),baseY+(int)(Math.sin(time)*10));
 			{chickenColor.red, chickenColor.red, chickenColor.red, chickenColor.red, chickenColor.red, chickenColor.red, chickenColor.red, chickenColor.red},
 
 
+		},
+		{{chickenColor.xor, chickenColor.purple, chickenColor.orange, chickenColor.orange, chickenColor.purple, chickenColor.xor, chickenColor.orange, chickenColor.orange},
+			{chickenColor.green, chickenColor.row, chickenColor.green, chickenColor.x,chickenColor.green,chickenColor.x,chickenColor.green, chickenColor.x},
+			{chickenColor.orange, chickenColor.yellow, chickenColor.flu, chickenColor.blue, chickenColor.orange, chickenColor.yellow, chickenColor.purple, chickenColor.blue},
+			{chickenColor.red, chickenColor.red, chickenColor.red, chickenColor.red, chickenColor.red, chickenColor.red, chickenColor.red, chickenColor.column},
+
+
+		},
+		{{chickenColor.flu, chickenColor.purple, chickenColor.orange, chickenColor.orange, chickenColor.purple, chickenColor.flu, chickenColor.orange, chickenColor.orange},
+			{chickenColor.green, chickenColor.row, chickenColor.green, chickenColor.x,chickenColor.green,chickenColor.x,chickenColor.green, chickenColor.x},
+			{chickenColor.orange, chickenColor.yellow, chickenColor.flu, chickenColor.blue, chickenColor.orange, chickenColor.yellow, chickenColor.purple, chickenColor.blue},
+			{chickenColor.red, chickenColor.flu, chickenColor.red, chickenColor.red, chickenColor.red, chickenColor.flu, chickenColor.red, chickenColor.column},
+
+
 		}
 
 
@@ -99,6 +113,18 @@ setLocation(getX(),baseY+(int)(Math.sin(time)*10));
 					break;
 				case circle:
 					c=new CircleChicken(i, j);
+					break;
+				case xor:
+					c=new XorChicken(i, j);
+					break;
+				case row:
+					c=new RowChicken(i, j);
+					break;
+				case column:
+					c=new ColumnChicken(i, j);
+					break;
+				case flu:
+					c=new FluChicken(i, j);
 					break;
 				default:
 					c=new YellowChicken(i, j);

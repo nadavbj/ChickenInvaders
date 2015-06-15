@@ -1,3 +1,5 @@
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.awt.Menu;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
@@ -10,21 +12,22 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 
-public class PlusChicken extends Chicken{
+public class ColumnChicken extends Chicken{
 	private Clip clip;
-	public PlusChicken(int col, int raw) {
-	super("/Chicken_Invaders_resources/chicken/special/plus_chicken.png", col, raw);
-	color=chickenColor.plus;
+	public ColumnChicken(int col, int raw) {
+	super("/Chicken_Invaders_resources/chicken/bonus/column_chicken.png", raw, col);
+	color=chickenColor.column;
 	}
-	
 
-	
 
-	
-	public void visit(BlackShot black) {
+	public void visit(BlackShot blue) {
+		delete(); 
 		//play clip
 				try {
 					URL url = Menu.class.getResource("/Chicken_Invaders_resources/sound/explosion.wav");
@@ -51,33 +54,11 @@ public class PlusChicken extends Chicken{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				/*for(int t = 0 ; t<8;t++){
-
-					// kill the OrizenalROW
-					chickensMat[this.raw][t].delete();
-					
-
-				}
-
-				for(int t = 0 ; t<4;t++){
-
-					chickensMat[t][this.col].delete();
-					
-				}*/
-				
-				
-				
-		for(int i=0; i<8; i++)   /// killing all the chickens in the same row
-		{
-			if(chickensMat[this.raw][i]!=null) chickensMat[this.raw][i].delete();
-		}
-		
-		for(int i=0; i<4;i++)		/// killing all the chickens in the same col
-		{
-			if(chickensMat[i][this.col]!=null) chickensMat[i][this.col].delete();
-		}
 		
 	}
 
+	
+	
 
 }
+

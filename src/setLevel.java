@@ -34,7 +34,7 @@ public class setLevel extends JDialog {
 		setContentPane(contentPane_1);
 		contentPane_1.setLayout(null);
 		
-		final JSpinner levelSetter = new JSpinner(new SpinnerNumberModel(4,1,4,1));
+		final JSpinner levelSetter = new JSpinner(new SpinnerNumberModel(1,1,6,6));
 		levelSetter.setBounds(77, 64, 47, 28);
 		contentPane_1.add(levelSetter);
 				
