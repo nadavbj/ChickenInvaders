@@ -16,7 +16,7 @@ import javax.swing.JLabel;
 public class X_Chicken extends Chicken{
 	private Clip clip;
 	public X_Chicken(int col, int raw) {
-	super("/Chicken_Invaders_resources/chicken/special/x_chicken.png", col, raw);
+	super("/Chicken_Invaders_resources/chicken/special/x_chicken.PNG", col, raw);
 	color=chickenColor.x;
 	}
 	
@@ -55,107 +55,44 @@ public class X_Chicken extends Chicken{
 					e.printStackTrace();
 				}
 				
-				//the current Xchicken
-				
-/*
-				int u =this.raw; int t =this.col ; 
-				while (u<3 && t<7)
-
-				{
-					if (chickensMat[u+1][t+1]!=null)
-					{
-					//down right diognal 
-					chickensMat[u+1][t+1].delete();
-					u++;
-					t++;
-					}
+			
+				int i = this.col-1;
+				int j = this.raw-1;
+				while(i >= 0 && j >= 0){
+					if(Chicken.chickensMat[i][j] != null)
+						Chicken.chickensMat[i][j].delete();
+					i--;
+					j--;
 				}
-
-				u= this.raw;
-				t= this.col ; 
-
-				while (u>0 && t<7)
-
-				{
-					//up right diognal
-					if (chickensMat[u-1][t+1]!=null){
-					chickensMat[u-1][t+1].delete();
-					u--;
-					t++;
-					}
+				i = this.col-1;
+				j =this.raw+1;
+				while(i >= 0 && j < Chicken.chickensMat[0].length){
+					if(Chicken.chickensMat[i][j] != null)
+						Chicken.chickensMat[i][j].delete();
+					i--;
+					j++;
 				}
+				i =  this.col+1;
+				j =this.raw-1;
+				while(i < Chicken.chickensMat.length && j >= 0){
+					if(Chicken.chickensMat[i][j] != null)
+						Chicken.chickensMat[i][j].delete();
+					i++;
+					j--;
 
-				u= this.raw;
-				t= this.col ; 
-
-				while (u<3 && t>0)
-
-				{
-					//down left diognal
-					if (chickensMat[u+1][t-1]!=null){
-					chickensMat[u+1][t-1].delete();
-					u++;
-					t--;
-					}
 				}
-
-				u= this.raw;
-				t= this.col; 
-
-				while (u>0 && t>0)
-
-				{
-					if (chickensMat[u-1][t-1]!=null){
-					//up left diognal
-					chickensMat[u-1][t-1].delete();
-					u--;
-					t--;
-					}
+				i = this.col+1;
+				j = this.raw+1;
+				while(i < Chicken.chickensMat.length && j < Chicken.chickensMat[0].length){
+					if(Chicken.chickensMat[i][j] != null)
+						Chicken.chickensMat[i][j].delete();
+					i++;
+					j++;
 				}
-				
-				*/
-				
-				
-		while (this.raw>=0 &&this.col<chickensMat[this.raw].length && chickensMat[this.raw][this.col]!=null)   // kill in X style
-		{
-			chickensMat[this.raw][this.col].delete();
-			this.raw--;
-			this.col++;
-		}
-		
-		this.raw=rowT+1;
-		this.col=colT+1;
-		
-		while(this.raw<chickensMat.length && this.col<chickensMat[this.raw].length && chickensMat[this.raw][this.col]!=null)   // kill in X style
-		{
-			chickensMat[this.raw][this.col].delete();  	
-			this.raw++;
-			this.col++;
-		}
-		
-		this.raw=rowT+1;
-		this.col=colT-1;
-		
-		while (this.raw<chickensMat.length && this.col>=0&& chickensMat[this.raw][this.col]!=null)  
-		{
-			chickensMat[this.raw][this.col].delete();  	
-			this.raw++;
-			this.col--;
-		}
-		
-		this.raw=rowT-1;
-		this.col=colT-1;
-		
-		while(this.col>=0 && this.raw>=0&& chickensMat[this.raw][this.col]!=null)     
-		{
-			chickensMat[this.raw][this.col].delete(); 	
-			this.raw--;
-			this.col--;
-		}
-		
-		
+				this.delete();
 	}
-
-
-
 }
+
+
+
+

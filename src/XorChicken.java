@@ -21,7 +21,7 @@ import javax.swing.border.EmptyBorder;
 public class XorChicken extends Chicken{
 	private Clip clip;
 	public XorChicken(int col, int raw) {
-	super("/Chicken_Invaders_resources/chicken/bonus/xor_chicken.png", col, raw);
+	super("/Chicken_Invaders_resources/chicken/Bonus/xor_chicken.PNG", col, raw);
 	color=chickenColor.xor;
 	}
 
@@ -57,7 +57,17 @@ public class XorChicken extends Chicken{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-		
+				
+				delete();
+				if(Chicken.chickensMat[this.raw][this.col+1] != null) chickensMat[this.raw][this.col+1].delete();
+				if(Chicken.chickensMat[this.raw][this.col-1] != null) chickensMat[this.raw][this.col-1].delete();
+				if(Chicken.chickensMat[this.raw+1][this.col] != null) chickensMat[this.raw+1][this.col].delete();
+				if(Chicken.chickensMat[this.raw-1][this.col] != null) chickensMat[this.raw-1][this.col].delete();
+				if(Chicken.chickensMat[this.raw+1][this.col+1] != null) chickensMat[this.raw+1][this.col+1].delete();
+				if(Chicken.chickensMat[this.raw-1][this.col-1] != null) chickensMat[this.raw-1][this.col-1].delete();
+				if(Chicken.chickensMat[this.raw-1][this.col+1] != null) chickensMat[this.raw-1][this.col+1].delete();
+				if(Chicken.chickensMat[this.raw+1][this.col-1] != null) chickensMat[this.raw+1][this.col-1].delete();
+				
 	}
 
 	

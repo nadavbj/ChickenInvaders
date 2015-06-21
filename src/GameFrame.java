@@ -80,7 +80,8 @@ public class GameFrame extends JFrame{
      	contentPane.add(tool);
    
 		this.level = level;
-		Chicken.load_level(3);
+		Chicken.load_level(level);
+		JOptionPane.showMessageDialog(null, "Press ENTER to start game");
 		//JOptionPane.showMessageDialog(null, "Press DOUBLE ENTER to start game");
 		//contentPane.add(status, BorderLayout.LINE_END);
 		addKeyListener(new KeyListener() {
@@ -204,8 +205,12 @@ public class GameFrame extends JFrame{
 	contentPane.add(backGround);
 	}
 
-	public void setGameLevel (int level){
-	
+	public void level6 (int level){
+		if (gameOver()){
+			EntryWindow	 entry = new EntryWindow();
+			entry.setVisible(true);
+			dispose();
+		}
 	}
 
 	
@@ -216,17 +221,7 @@ public class GameFrame extends JFrame{
 			//check if the level is over
 			if(gameOver()){
 				
-				if ( level ==5){
-					EntryWindow entry = new EntryWindow();
-					entry.setVisible(true);
-					dispose();
-				}
 				
-				if ( level ==6){
-					EntryWindow entry = new EntryWindow();
-					entry.setVisible(true);
-					dispose();
-				}
 			//reset timer
 				if(status.isRunning()){
 					long elapsed= System.currentTimeMillis() - status.getStartTime();
@@ -270,12 +265,13 @@ public class GameFrame extends JFrame{
 							level++;
 							Chicken.load_level(level);
 							//load next game
-							if(level>=1 && level <=4){
+							if(level <=4){
 								Chicken.load_level(level);
 								JOptionPane.showMessageDialog(null, "Press ENTER to start game");
 							}
 							else{
 								//NO MORE LEVELS TO PLAY
+								JOptionPane.showMessageDialog(null, "Thank you for playing Bonus with us");
 								EntryWindow	 entry = new EntryWindow();
 								entry.setVisible(true);
 								dispose();
@@ -341,7 +337,8 @@ public class GameFrame extends JFrame{
 	}
 
 	public String ReadFromFile() throws IOException {
-		BufferedReader br = new BufferedReader(new FileReader("top10.txt"));
+		//File file=new File(C:\)
+		BufferedReader br = new BufferedReader(new FileReader("/res/top10.txt"));
 
 		String result = "<html> ";
 		for (int j = 0; j < 10; j++) {
@@ -371,7 +368,7 @@ public class GameFrame extends JFrame{
 	
 	
 	
-	public static void main(String[] args) {
-		new GameFrame(1).setVisible(true);
-	}	
+//	public static void main(String[] args) {
+//		new GameFrame(1).setVisible(true);
+//	}	
 }

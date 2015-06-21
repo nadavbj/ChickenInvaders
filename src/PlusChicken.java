@@ -16,7 +16,7 @@ import javax.swing.JLabel;
 public class PlusChicken extends Chicken{
 	private Clip clip;
 	public PlusChicken(int col, int raw) {
-	super("/Chicken_Invaders_resources/chicken/special/plus_chicken.png", col, raw);
+	super("/Chicken_Invaders_resources/chicken/special/plus_chicken.PNG", col, raw);
 	color=chickenColor.plus;
 	}
 	
@@ -69,12 +69,12 @@ public class PlusChicken extends Chicken{
 				
 		for(int i=0; i<8; i++)   /// killing all the chickens in the same row
 		{
-			if(chickensMat[this.raw][i]!=null) chickensMat[this.raw][i].delete();
+			if(chickensMat[this.col][i]!=null) chickensMat[this.col][i].delete();
 		}
 		
 		for(int i=0; i<4;i++)		/// killing all the chickens in the same col
 		{
-			if(chickensMat[i][this.col]!=null) chickensMat[i][this.col].delete();
+			if(chickensMat[i][this.raw]!=null) chickensMat[i][this.raw].delete();
 		}
 		
 	}

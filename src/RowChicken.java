@@ -21,7 +21,7 @@ import javax.swing.border.EmptyBorder;
 public class RowChicken extends Chicken{
 	private Clip clip;
 	public RowChicken(int col, int raw) {
-	super("/Chicken_Invaders_resources/chicken/bonus/row_chicken.png", col, raw);
+	super("/Chicken_Invaders_resources/chicken/Bonus/row_chicken.PNG", col, raw);
 	color=chickenColor.row;
 	}
 
@@ -53,6 +53,11 @@ public class RowChicken extends Chicken{
 				} catch (LineUnavailableException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				}
+				
+				for(int i=0; i<8; i++)   /// killing all the chickens in the same row
+				{
+					if(chickensMat[this.col][i]!=null) chickensMat[this.col][i].delete();
 				}
 		
 	}

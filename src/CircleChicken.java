@@ -52,18 +52,18 @@ public class CircleChicken extends Chicken{
 					e.printStackTrace();
 				}
 				
-				for(int t = col-1 ; t<=col+1;t++){
+				for(int t = raw-1 ; t<=raw+1;t++){
 					
 					// kill the middelROW
-					if(chickensMat[this.raw][t]!=null)  chickensMat[this.raw][t].delete();
+					if(chickensMat[this.col][t]!=null)  chickensMat[this.col][t].delete();
 					
 
 					// kill the upperRow
-					if(chickensMat[this.raw-1][t]!=null) chickensMat[this.raw-1][t].delete();
+					if(chickensMat[this.col-1][t]!=null) chickensMat[this.col-1][t].delete();
 					
 					
 					// kill the DownRow
-					if(chickensMat[raw+1][t]!=null)chickensMat[raw+1][t].delete();
+					if(chickensMat[col+1][t]!=null)chickensMat[col+1][t].delete();
 				}
 				/*
 		if(this.raw>0)    //check if the chicken isn't in the corner

@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -46,13 +47,11 @@ public class MenuPanel extends JPanel implements ActionListener {
 	{
 		painter=new Painter();
 		subs=new ArrayList<String>(25);
-		 try {                
-			 background = ImageIO.read(new File("pink2.jpg"));
-	       } catch (IOException ex) {
-	           
-	       }
+			// background = ImageIO.read(new File("/Chicken_Invaders_resources/chicken/chicken_yellow.jpg"));
+			 background=((ImageIcon) MovingCIObject.getIcon("/Chicken_Invaders_resources/pink2.jpg")).getImage();
+			 
 		 fFrame=frame;
-		 gf = new GameFrame(1);
+		
 		 set = new setLevel();
 		 names = new setNames();
 		subs.add("Play");
@@ -91,6 +90,7 @@ public class MenuPanel extends JPanel implements ActionListener {
 				if (bounds.contains(e.getPoint()))
 				{
 						//names.setVisible(true);
+						gf  = new GameFrame(1);
 						gf.setVisible(true);
 					    fFrame.dispose();
 				}
@@ -104,9 +104,10 @@ public class MenuPanel extends JPanel implements ActionListener {
 				}
 				bounds = menuBounds.get("Hall Of Fame");
 				if (bounds.contains(e.getPoint()))
-				{
+				{ gf = new GameFrame(4);
 				
 					try {
+						
 						JOptionPane.showMessageDialog(gf, gf.ReadFromFile(),
 								"Top 10", JOptionPane.DEFAULT_OPTION);
 					} catch (HeadlessException e1) {

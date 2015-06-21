@@ -64,17 +64,17 @@ setLocation(getX(),baseY+(int)(Math.sin(time)*10));
 
 
 		},
-		{{chickenColor.xor, chickenColor.purple, chickenColor.orange, chickenColor.orange, chickenColor.purple, chickenColor.xor, chickenColor.orange, chickenColor.orange},
+		{{chickenColor.column, chickenColor.purple, chickenColor.orange, chickenColor.orange, chickenColor.purple, chickenColor.row, chickenColor.orange, chickenColor.orange},
 			{chickenColor.green, chickenColor.row, chickenColor.green, chickenColor.x,chickenColor.green,chickenColor.x,chickenColor.green, chickenColor.x},
-			{chickenColor.orange, chickenColor.yellow, chickenColor.flu, chickenColor.blue, chickenColor.orange, chickenColor.yellow, chickenColor.purple, chickenColor.blue},
+			{chickenColor.orange, chickenColor.yellow, chickenColor.yellow, chickenColor.blue, chickenColor.orange, chickenColor.yellow, chickenColor.purple, chickenColor.blue},
 			{chickenColor.red, chickenColor.red, chickenColor.red, chickenColor.red, chickenColor.red, chickenColor.red, chickenColor.red, chickenColor.column},
 
 
 		},
-		{{chickenColor.flu, chickenColor.purple, chickenColor.orange, chickenColor.orange, chickenColor.purple, chickenColor.flu, chickenColor.orange, chickenColor.orange},
-			{chickenColor.green, chickenColor.row, chickenColor.green, chickenColor.x,chickenColor.green,chickenColor.x,chickenColor.green, chickenColor.x},
-			{chickenColor.orange, chickenColor.yellow, chickenColor.flu, chickenColor.blue, chickenColor.orange, chickenColor.yellow, chickenColor.purple, chickenColor.blue},
-			{chickenColor.red, chickenColor.flu, chickenColor.red, chickenColor.red, chickenColor.red, chickenColor.flu, chickenColor.red, chickenColor.column},
+		{{chickenColor.green, chickenColor.purple, chickenColor.orange, chickenColor.orange, chickenColor.purple, chickenColor.purple, chickenColor.orange, chickenColor.orange},
+			{chickenColor.blue, chickenColor.flu, chickenColor.green, chickenColor.x,chickenColor.green,chickenColor.x,chickenColor.green, chickenColor.x},
+			{chickenColor.orange, chickenColor.row, chickenColor.xor, chickenColor.blue, chickenColor.orange, chickenColor.yellow, chickenColor.purple, chickenColor.column},
+			{chickenColor.green, chickenColor.red, chickenColor.red, chickenColor.red, chickenColor.red, chickenColor.blue, chickenColor.red, chickenColor.red},
 
 
 		}

@@ -4,10 +4,7 @@ import java.io.Serializable;
 
 
 
- public class Painter implements ForMenu,Serializable {
-/**
- *Painter class that paints the bounds, background and the text menu of the main menu  
- */
+ public class Painter implements ForMenu {
 
 public Dimension getPreferredSize(Graphics2D g2d, String text) {
             return g2d.getFontMetrics().getStringBounds(text, g2d).getBounds().getSize();
