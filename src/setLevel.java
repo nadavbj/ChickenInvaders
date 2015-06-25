@@ -10,9 +10,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
+import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.ImageIcon;
+
 import java.awt.SystemColor;
 import java.awt.Font;
 
@@ -22,6 +24,8 @@ public class setLevel extends JDialog {
 	private JPanel contentPane_1;
 	static Integer level;
 	private GameFrame gf;
+	private String name ="player";
+	private JTextField textField;
 	
 	public setLevel() {
 		super();
@@ -44,14 +48,16 @@ public class setLevel extends JDialog {
 		lblLevel.setForeground(SystemColor.activeCaption);
 		lblLevel.setBounds(42, 24, 136, 28);
 		contentPane_1.add(lblLevel);
-		
-		
-		
+		textField = new JTextField("Enter your name here");
+		textField.setBounds(32, 88, 134, 28);
+		contentPane_1.add(textField);
+		textField.setColumns(10);
+		name = textField.getText();
 				JButton btnSubmitAndStart = new JButton("Submit And Start!");
 				btnSubmitAndStart.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						level = (Integer)levelSetter.getValue();
-						 gf = new GameFrame(level);
+						 gf = new GameFrame(level, name);
 						JOptionPane.showMessageDialog ( 
 								null, "You choose to start to play in level: " + level, "Set Level ", 
 								JOptionPane.PLAIN_MESSAGE);
@@ -69,6 +75,8 @@ public class setLevel extends JDialog {
 				lblBackGround.setIcon(new ImageIcon("/ChickenInvaders/src/Chicken_Invaders_resources/back3.jpg"));
 				lblBackGround.setBounds(0, 0, 200, 172);
 				contentPane_1.add(lblBackGround);
+				
+				
 				
 				
 		

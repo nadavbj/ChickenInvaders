@@ -39,8 +39,8 @@ public class MenuPanel extends JPanel implements ActionListener {
 	private	JFrame fFrame;
 	private setLevel set;
 	private GameFrame gf;
-	private setNames names;
-	
+	private  String name = "";
+	private WinnersTable win;
     
 	
 	public MenuPanel(final JFrame frame)
@@ -53,13 +53,22 @@ public class MenuPanel extends JPanel implements ActionListener {
 		 fFrame=frame;
 		
 		 set = new setLevel();
-		 names = new setNames();
+		 win = new WinnersTable();
+			//names.setVisible(true);
+		
+		 
+		 
+		 
 		subs.add("Play");
+		
+		
 		subs.add("Set Level");
 		subs.add("Hall Of Fame");
 		subs.add("Exit");
 		selectMenuItem=subs.get(0);
-		
+		JTextField text = new JTextField("Enter your Name here");
+		name = text.getText();
+		this.add(text);
 		MouseAdapter ma = new MouseAdapter()
 		{
 			public void mouseClicked(MouseEvent e)
@@ -89,8 +98,8 @@ public class MenuPanel extends JPanel implements ActionListener {
 				bounds = menuBounds.get("Play");
 				if (bounds.contains(e.getPoint()))
 				{
-						//names.setVisible(true);
-						gf  = new GameFrame(1);
+					
+						gf= new GameFrame(1, name);
 						gf.setVisible(true);
 					    fFrame.dispose();
 				}
@@ -104,19 +113,9 @@ public class MenuPanel extends JPanel implements ActionListener {
 				}
 				bounds = menuBounds.get("Hall Of Fame");
 				if (bounds.contains(e.getPoint()))
-				{ gf = new GameFrame(4);
+				{ 
 				
-					try {
-						
-						JOptionPane.showMessageDialog(gf, gf.ReadFromFile(),
-								"Top 10", JOptionPane.DEFAULT_OPTION);
-					} catch (HeadlessException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+					win.setVisible(true);
 
 					
 				}

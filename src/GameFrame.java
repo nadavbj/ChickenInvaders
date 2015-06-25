@@ -20,6 +20,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
@@ -41,13 +42,11 @@ public class GameFrame extends JFrame{
 	private StatusPanel status; 
 	private String playerName= "Chicken Player";
 	private int level=1;
-	private File file = new File("top10.txt");
-	private int[] scoreArray = new int[10];
-	private String[] playerScoreArray = new String[10];
-
+	private String name;
+	
 	private int total=0;
 
-	public GameFrame(int level) {
+	public GameFrame(int level, String name) {
 
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -63,12 +62,12 @@ public class GameFrame extends JFrame{
 		final Spaceship spaceship=new Spaceship();
 		contentPane.add(spaceship);
 		//spaceship.setLocation((getWidth()-spaceship.getWidth())/2, getHeight()-2*spaceship.getHeight());
-	
+		this.name = name;
 		spaceship.setLocation(470,470);
 	//	tool.setBounds(0, 550, 973, 87);
 		
 		status= new StatusPanel();
-	
+		
 		JToolBar tool  = new JToolBar();			
 		tool.setBounds(0, 550, 973, 87);
 		
@@ -80,6 +79,7 @@ public class GameFrame extends JFrame{
      	contentPane.add(tool);
    
 		this.level = level;
+		
 		Chicken.load_level(level);
 		JOptionPane.showMessageDialog(null, "Press ENTER to start game");
 		//JOptionPane.showMessageDialog(null, "Press DOUBLE ENTER to start game");
@@ -91,6 +91,33 @@ public class GameFrame extends JFrame{
 
 			@Override
 			public void keyReleased(KeyEvent e) {
+				//pressing enter starts the game
+				if (e.getKeyCode() == KeyEvent.VK_ENTER){
+					if(!status.isRunning){
+						status.startTime= System.currentTimeMillis();
+						status.isRunning= true;
+						status.updater= new Thread(status);
+						status.updater.start();
+					}
+			    }
+				if(status.isRunning){
+				switch (e.getKeyCode()) {
+				
+				case  KeyEvent.VK_RIGHT:
+				
+					spaceship.setDirection(0);
+					break;
+				case  KeyEvent.VK_LEFT:
+					spaceship.setDirection(0);
+					break;
+				default:
+					break;
+				}
+				
+			}
+		}
+			@Override
+			public void keyPressed(KeyEvent e) {
 				//pressing enter starts the game
 				if (e.getKeyCode() == KeyEvent.VK_ENTER){
 					if(!status.isRunning){
@@ -159,22 +186,18 @@ public class GameFrame extends JFrame{
 					s.setLocation(spaceship.getX()+spaceship.getWidth()/2-10,spaceship.getY());
 					break;
 				case  KeyEvent.VK_RIGHT:
-					if(spaceship.getX()+33<getWidth())
-					spaceship.setLocation(spaceship.getX()+33,spaceship.getY());
+				
+					spaceship.setDirection(16);
 					break;
 				case  KeyEvent.VK_LEFT:
-					if(spaceship.getX()-33>0)
-					spaceship.setLocation(spaceship.getX()-33,spaceship.getY());
+					spaceship.setDirection(-16);
 					break;
+				
 				default:
 					break;
 				}
 				
 			}
-		}
-			@Override
-			public void keyPressed(KeyEvent e) {
-				
 			}
 		});
 		
@@ -217,7 +240,7 @@ public class GameFrame extends JFrame{
 	
 	
 		public void finishLevel()
-		{
+		{	
 			//check if the level is over
 			if(gameOver()){
 				
@@ -249,7 +272,7 @@ public class GameFrame extends JFrame{
 							
 							//show game results
 							JOptionPane.showMessageDialog(null, 
-									"Hi "+playerName+ "\n" +" Level Shots: "+status.getLevel_Shots()+ "\n" +
+									"Hi"+ "\n" +" Level Shots: "+status.getLevel_Shots()+ "\n" +
 									"Level Time: "+status.getLevel_Time() +" \n" + 
 									"Current Level Score: " + status.getLevel_Score() +"\n"+
 									"Total Level Scores: " + sum);								
@@ -260,34 +283,26 @@ public class GameFrame extends JFrame{
 							status.setStartTime(0);
 							status.getShots().setText("Shots Count: 0     ");
 							status.getStopper().setText("00:00");
-							
+							System.out.println(level);
 							//increase level by 1
 							level++;
-							Chicken.load_level(level);
-							//load next game
-							if(level <=4){
+
+												
+							if (level <6){
 								Chicken.load_level(level);
-								JOptionPane.showMessageDialog(null, "Press ENTER to start game");
+								JOptionPane.showMessageDialog(null, "Press ENTER to start game");	
+								Chicken.load_level(level);	
 							}
+							
 							else{
-								//NO MORE LEVELS TO PLAY
-								JOptionPane.showMessageDialog(null, "Thank you for playing Bonus with us");
-								EntryWindow	 entry = new EntryWindow();
-								entry.setVisible(true);
+								
+								
+							new SaveGame().addWinner(new Winner(total, name,new Date()));
+								WinnersTable win = new WinnersTable();
+								win.setVisible(true);
 								dispose();
 								
-							
-							/*	
-							// For Bonus saving
-								if (level==4){
-									if(gameOver()){
-										JOptionPane.showMessageDialog(null, "Hi "+ playerName + "You got " +sum + "scores in this game" + "\n" + 
-									"Your time is: "+ status.getLevel_Time());
-										
-									}
-									
-								}
-*/							}
+											}
 							
 						}
 	
@@ -295,80 +310,7 @@ public class GameFrame extends JFrame{
 		}
 
 	
-	public void WriteToFile(String player) throws IOException {
-
-		if (!file.exists()) {
-			file.createNewFile();
-		}
-		ReadFromFile();
-
-		FileWriter fw = new FileWriter(file.getAbsoluteFile());
-		BufferedWriter bw = new BufferedWriter(fw);
-
-		int index = -1;
-
-		// Finding where the new score should be entered
-		
-		for (int i = 0; i < this.scoreArray.length; i++) {
-			if (total > this.scoreArray[i]) {
-				index = i;
-				break;
-			}
-		}
-		
-		if (index > -1) {
-			for (int i = this.scoreArray.length - 1; i > index; i--) {
-				this.scoreArray[i] = this.scoreArray[i - 1];
-				this.playerScoreArray[i] = this.playerScoreArray[i - 1];
-			}
-			this.scoreArray[index] = total;
-			this.playerScoreArray[index] = player;
-		}
-		this.scoreArray[index] = total;
-		this.playerScoreArray[index] = player;
-		String output = "";
-		for (int j = 0; j < 10; j++) {
-			output = playerScoreArray[j] + ";" + scoreArray[j];
-			bw.write(output);
-			bw.newLine();
-			output = "";
-		}
-		bw.close();
-	}
-
-	public String ReadFromFile() throws IOException {
-		//File file=new File(C:\)
-		BufferedReader br = new BufferedReader(new FileReader("/res/top10.txt"));
-
-		String result = "<html> ";
-		for (int j = 0; j < 10; j++) {
-
-			String s = br.readLine();
-			if (s == null) {
-				s = " ;0";
-			}
-			String[] parts = s.split(";");
-			playerScoreArray[j] = parts[0];
-			scoreArray[j] = Integer.parseInt(parts[1]);
-			result = result + (j + 1) + " " + playerScoreArray[j] + " : "
-					+ scoreArray[j] + "<br>";
-		}
-		br.close();
-
-		return result;
-
-	}
-	public String getName (){
-		return this.playerName;
-	}
-	
-	public void setName (String name){
-		this.playerName = name;
-	}
 	
 	
 	
-//	public static void main(String[] args) {
-//		new GameFrame(1).setVisible(true);
-//	}	
 }

@@ -37,7 +37,13 @@ public class Spaceship extends MovingCIObject {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {}
+	public void actionPerformed(ActionEvent e) {
+		setLocation(getX()+dir,getY());
+	}
+private int dir;
+	public void setDirection(int i) {
+		dir=i;
+	}
 
 
 }
