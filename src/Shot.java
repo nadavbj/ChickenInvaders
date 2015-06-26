@@ -21,7 +21,7 @@ public abstract class Shot extends MovingCIObject implements Visitable{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		setLocation(getX(),getY()-8);
+		setLocation(getX(),getY()-18);
 		if(getY()<=0)
 			delete();
 		Set<Chicken>objectsToBomb=new HashSet<Chicken>();

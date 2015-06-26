@@ -38,6 +38,7 @@ public class Spaceship extends MovingCIObject {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if(getX()+dir>0&&getX()+dir<board.getWidth())
 		setLocation(getX()+dir,getY());
 	}
 private int dir;

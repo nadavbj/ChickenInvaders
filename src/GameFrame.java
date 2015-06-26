@@ -145,6 +145,8 @@ public class GameFrame extends JFrame{
 				case KeyEvent.VK_NUMPAD4:
 					lastKey=4;
 					break;
+			
+				
 				case KeyEvent.VK_SPACE:
 					Shot s=null;
 					switch (lastKey) {
@@ -228,14 +230,7 @@ public class GameFrame extends JFrame{
 	contentPane.add(backGround);
 	}
 
-	public void level6 (int level){
-		if (gameOver()){
-			EntryWindow	 entry = new EntryWindow();
-			entry.setVisible(true);
-			dispose();
-		}
-	}
-
+	
 	
 	
 	
@@ -283,7 +278,7 @@ public class GameFrame extends JFrame{
 							status.setStartTime(0);
 							status.getShots().setText("Shots Count: 0     ");
 							status.getStopper().setText("00:00");
-							System.out.println(level);
+							
 							//increase level by 1
 							level++;
 

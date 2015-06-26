@@ -51,7 +51,7 @@ public class WinnersTable extends JFrame {
 		Object[][]data=new Object[6][3];
 		int i=0;
 		for (Winner winner : savedGame.winners) {
-			System.out.println(winner.getName());
+			
 			data[i++]=(new Object[]{winner.getName(),winner.getScore(),winner.getDate()});
 		}
 		

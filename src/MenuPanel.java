@@ -66,8 +66,8 @@ public class MenuPanel extends JPanel implements ActionListener {
 		subs.add("Hall Of Fame");
 		subs.add("Exit");
 		selectMenuItem=subs.get(0);
-		JTextField text = new JTextField("Enter your Name here");
-		name = text.getText();
+		final JTextField text = new JTextField("Enter your Name here");
+		
 		this.add(text);
 		MouseAdapter ma = new MouseAdapter()
 		{
@@ -98,7 +98,7 @@ public class MenuPanel extends JPanel implements ActionListener {
 				bounds = menuBounds.get("Play");
 				if (bounds.contains(e.getPoint()))
 				{
-					
+						name = text.getText();
 						gf= new GameFrame(1, name);
 						gf.setVisible(true);
 					    fFrame.dispose();

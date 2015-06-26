@@ -52,14 +52,15 @@ public class setLevel extends JDialog {
 		textField.setBounds(32, 88, 134, 28);
 		contentPane_1.add(textField);
 		textField.setColumns(10);
-		name = textField.getText();
+	
 				JButton btnSubmitAndStart = new JButton("Submit And Start!");
 				btnSubmitAndStart.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
+						name = textField.getText();
 						level = (Integer)levelSetter.getValue();
 						 gf = new GameFrame(level, name);
 						JOptionPane.showMessageDialog ( 
-								null, "You choose to start to play in level: " + level, "Set Level ", 
+								null, name+" You choose to start to play in level: " + level, "Set Level ", 
 								JOptionPane.PLAIN_MESSAGE);
 						
 						//build the new frame with the new input
